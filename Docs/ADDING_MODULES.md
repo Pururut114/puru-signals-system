@@ -278,5 +278,6 @@ Modules/
 - [ ] `_gen_meta_assets.py` запущен — `.asset` и `.meta` файлы сгенерированы и лежат рядом с `.cs`
 - [ ] Строка добавлена в `Docs/modules.md`
 - [ ] Секция добавлена в `Docs/CHEATSHEET.md`
-- [ ] Добавлен в `Editor/PSS_Wizard.cs` (ActionKind/TriggerKind + все 3 switch-а)
+- [ ] **Trigger / Action:** добавлен в `Editor/PSS_Wizard.cs` (ActionKind/TriggerKind + все 3 switch-а)
+- [ ] **Standalone Utility:** добавлен в `Editor/PSS_SpawnMenu.cs` (`Tools > PSS > Spawn > ...`)
 - [ ] `package.json` version обновлён, `CHANGELOG.md` заполнен
