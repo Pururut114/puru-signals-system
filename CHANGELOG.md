@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4] — 2026-05-15
+
+### Removed
+- `PSS_Setup.cs` — несовместим с immutable VPM package folders, не нужен в UdonSharp 1.x (program assets создаются автоматически)
+
+---
+
 ## [0.1.3] — 2026-05-15
 
 ### Fixed
