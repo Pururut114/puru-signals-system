@@ -238,6 +238,8 @@ Modules/
 > В Unity: выдели `.asmdef` → right-click → **Create → U# Assembly Definition**.
 > Добавь созданный `.asset` и `.asset.meta` в git.
 
+> **Если сборка имеет `defineConstraints`** (опциональная, как LTCGI): `UdonSharpAssemblyDefinition` добавить можно, но `UdonSharpProgramAsset` файлы для её скриптов в репо НЕ включать. Если define не задан — assembly не компилируется, type = null, UdonSharp уходит в цикл ошибок. Пользователи с этой зависимостью создают program assets через `Tools > PSS > Repair Missing Program Assets`.
+
 ---
 
 ## UdonSharp ограничения
@@ -252,9 +254,8 @@ Modules/
   }
   ```
 - **`OnEnable` / `OnDisable`** — magic methods, не `virtual`. Писать `private void OnEnable()` без `override`.
-- **`[UdonBehaviourSyncMode]`** — обязателен на каждом конкретном классе. Без него program asset не создаётся.
+- **`[UdonBehaviourSyncMode]`** — обязателен на каждом конкретном классе. Без него UdonSharp не будет компилировать скрипт.
 - **`System.Array.Copy`** — не поддерживается. Заменять на for-loop.
-- Полный список: `PLAN.md` → раздел "Известные фиксы и грабли UdonSharp".
 
 ---
 
