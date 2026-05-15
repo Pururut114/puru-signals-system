@@ -7,7 +7,7 @@
         "VRC.Udon",
         "VRC.SDKBase",
         "UdonSharp.Runtime",
-        "UdonSharpEditor"
+        "UdonSharp.Editor"
     ],
     "includePlatforms": ["Editor"],
     "excludePlatforms": [],
