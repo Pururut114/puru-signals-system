@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.8] — 2026-05-15
+
+### Added
+- `PSS_SetPickupable` (Action) — enables/disables `VRC_Pickup.pickupable` on a list of GameObjects. Optionally calls `Drop()` when disabling. Lives in `Modules/Pickup/Actions/`.
+- `PSS_MoveToPoint` (Action) — teleports a Transform to a destination point (position + optional rotation). Useful for object resets, moving panels, etc. Lives in `Modules/Physics/Actions/`.
+- `PSS_SetAvatarScale` (Action) — sets the local player's avatar eye height. Two modes: world-authoritative exact height (`SetAvatarEyeHeightByMeters`, range 0.1–100m) or player-controlled min/max limits (`SetAvatarEyeHeightMinimumByMeters/MaximumByMeters`, range 0.2–5m). Lives in `Modules/Avatar/Actions/`.
+- `PSS_ProTVAccessGate` (Standalone Utility, conditional) — ProTV-based access gate. Checks `TVManager` + `TVManagedWhitelist` authorization and applies: panel teleport, avatar scaling (SetLimits or SetExactHeight), object/collider enable/disable, and VRC_Pickup restriction. Requires `PSS_PROTV_INSTALLED` scripting define. Lives in `Modules/ProTV/` (conditional assembly `com.pururut.pss.protv`).
+- All three new Actions are available in `Tools > PSS > Quick Setup` wizard.
+
+---
+
 ## [0.1.7] — 2026-05-15
 
 ### Fixed

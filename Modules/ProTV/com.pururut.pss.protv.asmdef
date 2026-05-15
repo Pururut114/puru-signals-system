@@ -1,0 +1,19 @@
+{
+    "name": "com.pururut.pss.protv",
+    "rootNamespace": "PuruSignals",
+    "references": [
+        "VRC.Udon",
+        "VRC.SDKBase",
+        "UdonSharp.Runtime",
+        "ArchiTech.ProTV.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["PSS_PROTV_INSTALLED"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

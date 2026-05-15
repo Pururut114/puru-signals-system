@@ -50,7 +50,8 @@ namespace PuruSignals.Editor
         enum ActionKind
         {
             SetActive, AnimationParam, CallMethod,
-            TeleportPlayer
+            TeleportPlayer,
+            SetPickupable, MoveToPoint, SetAvatarScale
         }
         ActionKind _actionKind = ActionKind.SetActive;
 
@@ -70,6 +71,19 @@ namespace PuruSignals.Editor
 
         Transform _teleportTarget;
         float     _teleportYOffset = 0f;
+
+        bool  _pickupableValue = true;
+        bool  _pickupDrop      = true;
+
+        Transform _moveObject;
+        Transform _moveDestination;
+        bool      _moveCopyRotation = true;
+
+        bool  _avatarSetSpecificHeight = true;
+        float _avatarEyeHeight         = 1.8f;
+        float _avatarMinHeight         = 0.2f;
+        float _avatarMaxHeight         = 5.0f;
+        bool  _avatarAllowManual       = true;
 
         // ── Root object ───────────────────────────────────────────────────────
         GameObject _rootObject;
@@ -330,6 +344,34 @@ namespace PuruSignals.Editor
                     _teleportYOffset = EditorGUILayout.FloatField("Y Offset", _teleportYOffset);
                     if (isBoolState)
                         EditorGUILayout.HelpBox("Телепортирует на одну точку при True и False.", MessageType.None);
+                    break;
+
+                case ActionKind.SetPickupable:
+                    _pickupableValue = EditorGUILayout.Toggle("Pickupable", _pickupableValue);
+                    if (!_pickupableValue)
+                        _pickupDrop = EditorGUILayout.Toggle("Drop if disabling", _pickupDrop);
+                    if (isBoolState)
+                        EditorGUILayout.HelpBox("Pickupable: true при True-состоянии, false при False.", MessageType.None);
+                    break;
+
+                case ActionKind.MoveToPoint:
+                    _moveObject      = (Transform)EditorGUILayout.ObjectField("Object", _moveObject, typeof(Transform), true);
+                    _moveDestination = (Transform)EditorGUILayout.ObjectField("Destination", _moveDestination, typeof(Transform), true);
+                    _moveCopyRotation = EditorGUILayout.Toggle("Copy Rotation", _moveCopyRotation);
+                    break;
+
+                case ActionKind.SetAvatarScale:
+                    _avatarSetSpecificHeight = EditorGUILayout.Toggle("Set Specific Height", _avatarSetSpecificHeight);
+                    if (_avatarSetSpecificHeight)
+                        _avatarEyeHeight = EditorGUILayout.Slider("Eye Height (m)", _avatarEyeHeight, 0.1f, 100f);
+                    else
+                    {
+                        _avatarAllowManual = EditorGUILayout.Toggle("Allow Manual Scaling", _avatarAllowManual);
+                        _avatarMinHeight   = Mathf.Clamp(EditorGUILayout.FloatField("Min Height (m)", _avatarMinHeight), 0.2f, 5f);
+                        _avatarMaxHeight   = Mathf.Clamp(EditorGUILayout.FloatField("Max Height (m)", _avatarMaxHeight), _avatarMinHeight, 5f);
+                    }
+                    if (isBoolState)
+                        EditorGUILayout.HelpBox("Скейл применяется при True-состоянии. При False — те же настройки.", MessageType.None);
                     break;
             }
         }
@@ -617,6 +659,9 @@ namespace PuruSignals.Editor
                 case ActionKind.AnimationParam: return typeof(PSS_AnimationParam);
                 case ActionKind.CallMethod:     return typeof(PSS_CallMethod);
                 case ActionKind.TeleportPlayer: return typeof(PSS_TeleportPlayer);
+                case ActionKind.SetPickupable:  return typeof(PSS_SetPickupable);
+                case ActionKind.MoveToPoint:    return typeof(PSS_MoveToPoint);
+                case ActionKind.SetAvatarScale: return typeof(PSS_SetAvatarScale);
                 default:                        return typeof(PSS_SetActive);
             }
         }
@@ -685,6 +730,25 @@ namespace PuruSignals.Editor
                         SetField(action, "target",  _teleportTarget);
                     SetField(action, "yOffset", _teleportYOffset);
                     break;
+
+                case ActionKind.SetPickupable:
+                    SetField(action, "pickupable",      _pickupableValue);
+                    SetField(action, "dropIfDisabling", _pickupDrop);
+                    break;
+
+                case ActionKind.MoveToPoint:
+                    if (_moveObject      != null) SetField(action, "objectToMove",  _moveObject);
+                    if (_moveDestination != null) SetField(action, "destination",   _moveDestination);
+                    SetField(action, "copyRotation", _moveCopyRotation);
+                    break;
+
+                case ActionKind.SetAvatarScale:
+                    SetField(action, "setSpecificHeight",  _avatarSetSpecificHeight);
+                    SetField(action, "eyeHeight",          _avatarEyeHeight);
+                    SetField(action, "allowManualScaling", _avatarAllowManual);
+                    SetField(action, "minHeight",          _avatarMinHeight);
+                    SetField(action, "maxHeight",          _avatarMaxHeight);
+                    break;
             }
         }
 
@@ -721,6 +785,25 @@ namespace PuruSignals.Editor
                     if (_teleportTarget != null)
                         SetField(action, "target",  _teleportTarget);
                     SetField(action, "yOffset", _teleportYOffset);
+                    break;
+
+                case ActionKind.SetPickupable:
+                    SetField(action, "pickupable",      stateTrue);
+                    SetField(action, "dropIfDisabling", _pickupDrop);
+                    break;
+
+                case ActionKind.MoveToPoint:
+                    if (_moveObject      != null) SetField(action, "objectToMove",  _moveObject);
+                    if (_moveDestination != null) SetField(action, "destination",   _moveDestination);
+                    SetField(action, "copyRotation", _moveCopyRotation);
+                    break;
+
+                case ActionKind.SetAvatarScale:
+                    SetField(action, "setSpecificHeight",  _avatarSetSpecificHeight);
+                    SetField(action, "eyeHeight",          _avatarEyeHeight);
+                    SetField(action, "allowManualScaling", _avatarAllowManual);
+                    SetField(action, "minHeight",          _avatarMinHeight);
+                    SetField(action, "maxHeight",          _avatarMaxHeight);
                     break;
             }
         }
