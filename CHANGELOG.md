@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2] — 2026-05-15
+
+### Fixed
+- Исправлена ссылка на UdonSharp editor assembly: `"UdonSharpEditor"` → `"UdonSharp.Editor"` в `com.pururut.pss.editor.asmdef`
+
+---
+
 ## [0.1.1] — 2026-05-15
 
 ### Fixed
