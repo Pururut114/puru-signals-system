@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9] — 2026-05-15
+
+### Added
+- `PSS_AutoSetup` (Editor) — `[InitializeOnLoad]` script that auto-manages `PSS_PROTV_INSTALLED` and `PSS_LTCGI_INSTALLED` scripting defines by detecting whether `ArchiTech.ProTV.Runtime` and `LTCGI` assemblies are loaded. When defines are already stable, silently creates any missing `UdonSharpProgramAsset` files. Eliminates manual "add define + run repair" flow for conditional modules — installing ProTV or LTCGI now works automatically.
+
+---
+
 ## [0.1.8] — 2026-05-15
 
 ### Added
