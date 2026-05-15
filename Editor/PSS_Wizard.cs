@@ -50,9 +50,6 @@ namespace PuruSignals.Editor
         enum ActionKind
         {
             SetActive, AnimationParam, CallMethod,
-#if PSS_LTCGI_INSTALLED
-            LtcgiControl,
-#endif
             TeleportPlayer
         }
         ActionKind _actionKind = ActionKind.SetActive;
@@ -70,12 +67,6 @@ namespace PuruSignals.Editor
         UdonBehaviour   _callTarget;
         string          _callEvent   = "";
         CallNetworkMode _callNetMode = CallNetworkMode.Local;
-
-#if PSS_LTCGI_INSTALLED
-        UdonSharpBehaviour _ltcgiAdapter;
-        LtcgiMode _ltcgiMode      = LtcgiMode.Global;
-        LtcgiOp   _ltcgiOperation = LtcgiOp.Toggle;
-#endif
 
         Transform _teleportTarget;
         float     _teleportYOffset = 0f;
@@ -331,19 +322,6 @@ namespace PuruSignals.Editor
                     if (isBoolState)
                         EditorGUILayout.HelpBox("Вызывается при любом изменении состояния (True и False).", MessageType.None);
                     break;
-
-#if PSS_LTCGI_INSTALLED
-                case ActionKind.LtcgiControl:
-                    _ltcgiAdapter = (UdonSharpBehaviour)EditorGUILayout.ObjectField(
-                        new GUIContent("LTCGI Adapter", "Перетащи LTCGI_UdonAdapter из сцены"),
-                        _ltcgiAdapter, typeof(UdonSharpBehaviour), true);
-                    _ltcgiMode = (LtcgiMode)EditorGUILayout.EnumPopup("Mode", _ltcgiMode);
-                    if (!isBoolState)
-                        _ltcgiOperation = (LtcgiOp)EditorGUILayout.EnumPopup("Operation", _ltcgiOperation);
-                    else
-                        EditorGUILayout.HelpBox("Operation: True/False  (авто по состоянию)", MessageType.None);
-                    break;
-#endif
 
                 case ActionKind.TeleportPlayer:
                     _teleportTarget = (Transform)EditorGUILayout.ObjectField(
@@ -638,9 +616,6 @@ namespace PuruSignals.Editor
                 case ActionKind.SetActive:      return typeof(PSS_SetActive);
                 case ActionKind.AnimationParam: return typeof(PSS_AnimationParam);
                 case ActionKind.CallMethod:     return typeof(PSS_CallMethod);
-#if PSS_LTCGI_INSTALLED
-                case ActionKind.LtcgiControl:   return typeof(PSS_LtcgiControl);
-#endif
                 case ActionKind.TeleportPlayer: return typeof(PSS_TeleportPlayer);
                 default:                        return typeof(PSS_SetActive);
             }
@@ -705,15 +680,6 @@ namespace PuruSignals.Editor
                     SetField(action, "networkMode", _callNetMode);
                     break;
 
-#if PSS_LTCGI_INSTALLED
-                case ActionKind.LtcgiControl:
-                    if (_ltcgiAdapter != null)
-                        SetField(action, "adapter", _ltcgiAdapter);
-                    SetField(action, "mode",      _ltcgiMode);
-                    SetField(action, "operation", _ltcgiOperation);
-                    break;
-#endif
-
                 case ActionKind.TeleportPlayer:
                     if (_teleportTarget != null)
                         SetField(action, "target",  _teleportTarget);
@@ -750,15 +716,6 @@ namespace PuruSignals.Editor
                     SetField(action, "eventName",   _callEvent);
                     SetField(action, "networkMode", _callNetMode);
                     break;
-
-#if PSS_LTCGI_INSTALLED
-                case ActionKind.LtcgiControl:
-                    if (_ltcgiAdapter != null)
-                        SetField(action, "adapter", _ltcgiAdapter);
-                    SetField(action, "mode",      _ltcgiMode);
-                    SetField(action, "operation", stateTrue ? LtcgiOp.True : LtcgiOp.False);
-                    break;
-#endif
 
                 case ActionKind.TeleportPlayer:
                     if (_teleportTarget != null)

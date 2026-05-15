@@ -4,7 +4,6 @@
     "references": [
         "com.pururut.pss.runtime",
         "com.pururut.pss.modules",
-        "com.pururut.pss.ltcgi",
         "VRC.Udon",
         "VRC.SDKBase",
         "UdonSharp.Runtime",

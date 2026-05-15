@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.1] — 2026-05-15
+
+### Fixed
+- `PSS_ConditionalTrigger` moved from `Modules` to `Runtime` — устранена circular dependency между `com.pururut.pss.runtime` и `com.pururut.pss.modules`
+- Убрана прямая ссылка на `com.pururut.pss.ltcgi` из `com.pururut.pss.editor.asmdef` — устранена ошибка компиляции editor assembly в проектах без LTCGI
+- LTCGI wizard support временно убран из PSS Quick Setup (будет добавлен обратно в отдельной editor assembly)
+
+---
+
 ## [0.1.0] — 2026-05-15
 
 ### Added
