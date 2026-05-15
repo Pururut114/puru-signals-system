@@ -238,7 +238,17 @@ Modules/
 > В Unity: выдели `.asmdef` → right-click → **Create → U# Assembly Definition**.
 > Добавь созданный `.asset` и `.asset.meta` в git.
 
-> **Если сборка имеет `defineConstraints`** (опциональная, как LTCGI): `UdonSharpAssemblyDefinition` добавить можно, но `UdonSharpProgramAsset` файлы для её скриптов в репо НЕ включать. Если define не задан — assembly не компилируется, type = null, UdonSharp уходит в цикл ошибок. Пользователи с этой зависимостью создают program assets через `Tools > PSS > Repair Missing Program Assets`.
+> **Если сборка имеет `defineConstraints`** (условная зависимость, как LTCGI/ProTV):
+> 1. `UdonSharpAssemblyDefinition` — добавить в репо (безвредна когда assembly не компилируется).
+> 2. `UdonSharpProgramAsset` (`.asset`) файлы для скриптов этой сборки — **НЕ** включать в репо. Когда define отсутствует — assembly не компилируется, type = null, UdonSharp зацикливается на ошибках.
+> 3. В `PSS_AutoSetup.cs` → `SyncDefines()` добавить одну строку:
+>    ```csharp
+>    changed |= SyncDefine(defines, "PSS_MYTOOL_INSTALLED", IsAssemblyLoaded("MyTool.AssemblyName"));
+>    ```
+>    Имя assembly берётся из `.asmdef` файла пакета зависимости (поле `"name"`).
+> 4. В `_validate_release.py` добавить папку в `SKIP_ASSET` и `CONDITIONAL_DIRS`.
+>
+> После этого: установил пакет → `PSS_AutoSetup` автоматически добавляет define, перекомпилирует, создаёт program assets. Удалил → убирает define. Пользователь ничего не делает вручную.
 
 ---
 
