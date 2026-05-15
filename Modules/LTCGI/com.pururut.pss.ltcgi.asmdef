@@ -1,0 +1,20 @@
+{
+    "name": "com.pururut.pss.ltcgi",
+    "rootNamespace": "PuruSignals",
+    "references": [
+        "com.pururut.pss.runtime",
+        "VRC.Udon",
+        "VRC.SDKBase",
+        "UdonSharp.Runtime",
+        "LTCGI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["PSS_LTCGI_INSTALLED"],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

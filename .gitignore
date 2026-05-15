@@ -1,0 +1,21 @@
+# Internal dev files
+PLAN.md
+
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Bb]uild/
+[Bb]uilds/
+
+# IDE
+.vs/
+.idea/
+*.user
+*.pidb
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db

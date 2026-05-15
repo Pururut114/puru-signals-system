@@ -1,0 +1,28 @@
+{
+    "name": "com.pururut.pss.editor",
+    "rootNamespace": "PuruSignals.Editor",
+    "references": [
+        "com.pururut.pss.runtime",
+        "com.pururut.pss.modules",
+        "com.pururut.pss.ltcgi",
+        "VRC.Udon",
+        "VRC.SDKBase",
+        "UdonSharp.Runtime",
+        "UdonSharpEditor"
+    ],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "pi.ltcgi",
+            "expression": "",
+            "define": "PSS_LTCGI_INSTALLED"
+        }
+    ],
+    "noEngineReferences": false
+}

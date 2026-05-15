@@ -1,0 +1,22 @@
+name: Build VPM Listing
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-listing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: vrchat-community/package-list-action@v1.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

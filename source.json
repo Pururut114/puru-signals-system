@@ -1,0 +1,11 @@
+{
+  "name": "Puru Signals System",
+  "id": "com.pururut.pss.listing",
+  "url": "https://Pururut114.github.io/puru-signals-system/index.json",
+  "author": "Pururut114",
+  "description": "Event-driven framework for VRChat worlds. Trigger → Channel → Action pipeline with Standalone Utilities.",
+  "githubRepos": [
+    "Pururut114/puru-signals-system"
+  ],
+  "packages": []
+}
