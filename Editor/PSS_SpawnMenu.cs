@@ -23,6 +23,21 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Zone Enable While Inside");
         }
 
+        [MenuItem("Tools/PSS/Spawn/Zones/Zone — Reparent Snap")]
+        static void SpawnZoneReparentSnap()
+        {
+            var go = new GameObject("PSS_Zone_ReparentSnap");
+
+            var col = go.AddComponent<BoxCollider>();
+            col.isTrigger = true;
+            col.size = new Vector3(4f, 3f, 4f);
+
+            go.AddComponent<PSS_ZoneReparentSnap>();
+
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Zone Reparent Snap");
+        }
+
         [MenuItem("Tools/PSS/Spawn/Zones/Fall Zone — Blackout Teleport")]
         static void SpawnFallZoneBlackoutTeleport()
         {

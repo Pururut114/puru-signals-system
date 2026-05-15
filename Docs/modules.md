@@ -50,6 +50,7 @@
 |-------|----------|
 | `PSS_ZoneEnableWhileInside` | Включает/выключает объекты пока локальный игрок внутри trigger-зоны. Поддерживает invert-режим и стартовую проверку позиции |
 | `PSS_FallZoneBlackoutTeleport` | При входе в зону: fade to black (PPS v2) → телепорт → fade back. Защита от re-trigger во время анимации |
+| `PSS_ZoneReparentSnap` | При входе в зону reparent'ит targetRoot к enterMarker. Опциональный exitMarker для обратного snap при выходе |
 
 ### Persistence
 | Класс | Описание |

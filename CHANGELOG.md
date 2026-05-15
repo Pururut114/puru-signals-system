@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.16] — 2026-05-15
+
+### Added
+- `PSS_ZoneReparentSnap` (Standalone Utility) — reparents `targetRoot` to `enterMarker` when local player enters the trigger zone, with optional localPosition/Rotation/Scale snap. Optional `exitMarker` reparents on zone exit. Auto-collect zone colliders, start position evaluation. Lives in `Modules/Standalone Utilities/Zones/`.
+
+---
+
 ## [0.1.15] — 2026-05-15
 
 ### Added

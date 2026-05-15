@@ -332,6 +332,50 @@ PSS_MultiSelectButton
 
 ---
 
+---
+
+### PSS_ZoneReparentSnap
+
+**Спавн:** `Tools > PSS > Spawn > Zones > Zone — Reparent Snap`
+
+При входе локального игрока в зону reparent'ит `targetRoot` к `enterMarker` и опционально снапает локальные трансформы (position/rotation/scale → 0/identity/1). При выходе — к `exitMarker` (если задан).
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `targetRoot` | `Transform` | — | Объект для reparent/snap |
+| `enterMarker` | `Transform` | — | Anchor при входе в зону |
+| `exitMarker` | `Transform` | — | Anchor при выходе. Пусто = ничего не делать при выходе |
+| `snapPosition` | `bool` | `true` | Обнулить localPosition после reparent |
+| `snapRotation` | `bool` | `true` | Обнулить localRotation после reparent |
+| `snapScale` | `bool` | `true` | Сбросить localScale в Vector3.one после reparent |
+| `zoneColliders` | `Collider[]` | — | Trigger-коллайдеры зоны. Пусто = автосбор с себя и детей |
+| `evaluateOnStart` | `bool` | `true` | Проверить позицию игрока при старте |
+| `startEvalDelayFrames` | `int` | `2` | Задержка старта в кадрах |
+
+**Логика Apply:**
+```
+targetRoot.SetParent(marker, false)
+→ localPosition = Vector3.zero      (если snapPosition)
+→ localRotation = Quaternion.identity (если snapRotation)
+→ localScale    = Vector3.one         (если snapScale)
+```
+
+**Топология при спавне из меню:**
+```
+PSS_Zone_ReparentSnap
+├── BoxCollider  (isTrigger = true, size 4×3×4)
+└── PSS_ZoneReparentSnap (component)
+```
+
+**Когда использовать:**
+- Зонально-зависимый UI — панель прикрепляется к нужному anchor при входе в комнату
+- Объект "следует" за зонами — снапается к разным точкам при переходах
+- Двусторонний snap: `enterMarker` при входе, `exitMarker` при выходе
+
+---
+
 ## Добавить новую утилиту
 
 Краткий чеклист — полная инструкция в `Docs/ADDING_MODULES.md`:
