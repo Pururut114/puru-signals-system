@@ -38,6 +38,28 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Fall Zone Blackout Teleport");
         }
 
+        // ── Teleport ─────────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/Teleport/Interact Teleport")]
+        static void SpawnInteractTeleport()
+        {
+            var go = new GameObject("PSS_InteractTeleport");
+            var col = go.AddComponent<BoxCollider>();
+            col.size = new Vector3(1f, 2f, 0.1f);
+            go.AddComponent<PSS_InteractTeleport>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Interact Teleport");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Teleport/Pickup Portal")]
+        static void SpawnPickupPortal()
+        {
+            var go = new GameObject("PSS_PickupPortal");
+            go.AddComponent<PSS_PickupPortal>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Pickup Portal");
+        }
+
         // ── FX ───────────────────────────────────────────────────────────────
 
         [MenuItem("Tools/PSS/Spawn/FX/Fade On Join")]

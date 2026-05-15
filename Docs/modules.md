@@ -51,6 +51,12 @@
 | `PSS_ZoneEnableWhileInside` | Включает/выключает объекты пока локальный игрок внутри trigger-зоны. Поддерживает invert-режим и стартовую проверку позиции |
 | `PSS_FallZoneBlackoutTeleport` | При входе в зону: fade to black (PPS v2) → телепорт → fade back. Защита от re-trigger во время анимации |
 
+### Teleport
+| Класс | Описание |
+|-------|----------|
+| `PSS_InteractTeleport` | Teleport с fade по Interact. `triggerOnce`, опциональный PostProcessVolume |
+| `PSS_PickupPortal` | Pickup-пульт: нажал Use → fade → teleport → respawn пикапа в remoteRespawnPoint. `requireHeld`, `dropAfterUse` |
+
 ### FX
 | Класс | Описание |
 |-------|----------|

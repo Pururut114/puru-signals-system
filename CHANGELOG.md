@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.14] — 2026-05-15
+
+### Added
+- `PSS_InteractTeleport` (Standalone Utility) — interact-triggered teleport with optional PostFX blackout transition. Fade 0→1 → hold → teleport → 1→0. `triggerOnce` option. `BehaviourSyncMode.None`. Lives in `Modules/Standalone Utilities/Teleport/`.
+- `PSS_PickupPortal` (Standalone Utility) — pickup use-triggered teleport. `OnPickupUseDown` → fade → teleport player → fade back → drop pickup + respawn pickup object to `remoteRespawnPoint` (FlagDiscontinuity + Rigidbody reset). `requireHeld`, `dropAfterUse` options. Lives in `Modules/Standalone Utilities/Teleport/`.
+
+---
+
 ## [0.1.13] — 2026-05-15
 
 ### Added
