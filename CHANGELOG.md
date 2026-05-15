@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5] — 2026-05-15
+
+### Fixed
+- `PSS_Setup.cs` restored — creates UdonSharp program assets in `Assets/PuruSignals/ProgramAssets/` (not in immutable `Packages/` folder). Fixes "Unable to find valid U# program asset" error after VCC install. Uses reflection to avoid direct `VRC.Udon.Editor` dependency. Auto-runs on project load (`[InitializeOnLoad]`) and on PSS import (`AssetPostprocessor`). Manual run: `Tools > PSS > Create Missing Program Assets`.
+
+---
+
 ## [0.1.4] — 2026-05-15
 
 ### Removed
