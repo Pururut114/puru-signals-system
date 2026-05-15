@@ -38,6 +38,28 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Fall Zone Blackout Teleport");
         }
 
+        // ── Select ───────────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/Select/Multi-Select Controller")]
+        static void SpawnMultiSelectController()
+        {
+            var go = new GameObject("PSS_MultiSelectController");
+            go.AddComponent<PSS_MultiSelectController>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Multi-Select Controller");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Select/Multi-Select Button")]
+        static void SpawnMultiSelectButton()
+        {
+            var go = new GameObject("PSS_MultiSelectButton");
+            var col = go.AddComponent<BoxCollider>();
+            col.size = new Vector3(0.5f, 0.5f, 0.1f);
+            go.AddComponent<PSS_MultiSelectButton>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Multi-Select Button");
+        }
+
         // ── ProTV (conditional) ───────────────────────────────────────────────
 
 #if PSS_PROTV_INSTALLED

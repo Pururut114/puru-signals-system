@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.12] — 2026-05-15
+
+### Added
+- `PSS_MultiSelectController` (Standalone Utility) — network-synced (`BehaviourSyncMode.Manual`) radio-selector. Exactly one of `targets[]` is active at a time; index `-1` disables all. Features: `defaultSelectedIndex`, `broadcastApplyForInstantFeedback` for instant client feedback, `SelectToggle(int)` for toggle-mode selection, and optional `onSelectChannels[]` PSS integration (fires `PSS_ChannelLocal` when a specific index is selected). Lives in `Modules/Standalone Utilities/Select/`.
+- `PSS_MultiSelectButton` (Standalone Utility) — button companion for `PSS_MultiSelectController`. Calls `SelectIndex`, `SelectToggle`, or `SelectNone` on interact. `toggleMode` field enables deselect-on-repeat. `Trigger()` method for Udon-to-Udon calls. Lives in `Modules/Standalone Utilities/Select/`.
+- Spawn menu: `Tools > PSS > Spawn > Select > Multi-Select Controller` and `Tools > PSS > Spawn > Select > Multi-Select Button`.
+
+---
+
 ## [0.1.11] — 2026-05-15
 
 ### Added

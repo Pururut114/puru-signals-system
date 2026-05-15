@@ -51,6 +51,12 @@
 | `PSS_ZoneEnableWhileInside` | Включает/выключает объекты пока локальный игрок внутри trigger-зоны. Поддерживает invert-режим и стартовую проверку позиции |
 | `PSS_FallZoneBlackoutTeleport` | При входе в зону: fade to black (PPS v2) → телепорт → fade back. Защита от re-trigger во время анимации |
 
+### Select
+| Класс | Описание |
+|-------|----------|
+| `PSS_MultiSelectController` | Synced radio-selector (Manual): ровно один из targets включён по индексу. -1 = все выключены. `SelectToggle`, `broadcastApplyForInstantFeedback`, опциональные `onSelectChannels` |
+| `PSS_MultiSelectButton` | Кнопка для PSS_MultiSelectController. Выбирает индекс или SelectNone. Поддерживает toggleMode |
+
 ---
 
 ## Physics
