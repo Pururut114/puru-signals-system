@@ -21,6 +21,11 @@
             "name": "pi.ltcgi",
             "expression": "",
             "define": "PSS_LTCGI_INSTALLED"
+        },
+        {
+            "name": "dev.architech.protv",
+            "expression": "",
+            "define": "PSS_PROTV_INSTALLED"
         }
     ],
     "noEngineReferences": false

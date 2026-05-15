@@ -38,7 +38,31 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Fall Zone Blackout Teleport");
         }
 
+        // ── ProTV (conditional) ───────────────────────────────────────────────
+
+#if PSS_PROTV_INSTALLED
+        [MenuItem("Tools/PSS/Spawn/ProTV/ProTV Access Gate")]
+        static void SpawnProTVAccessGate()
+        {
+            var go = new GameObject("PSS_ProTVAccessGate");
+            var type = FindType("PuruSignals.PSS_ProTVAccessGate");
+            if (type != null) go.AddComponent(type);
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS ProTV Access Gate");
+        }
+#endif
+
         // ── Helpers ───────────────────────────────────────────────────────────
+
+        static System.Type FindType(string fullName)
+        {
+            foreach (var asm in System.AppDomain.CurrentDomain.GetAssemblies())
+            {
+                var t = asm.GetType(fullName);
+                if (t != null) return t;
+            }
+            return null;
+        }
 
         static void PlaceInSceneView(GameObject go)
         {

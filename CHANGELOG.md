@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.11] — 2026-05-15
+
+### Added
+- `PSS_ProTVAccessGate` spawn menu item: `Tools > PSS > Spawn > ProTV > ProTV Access Gate`. Visible only when ProTV is installed (`PSS_PROTV_INSTALLED`).
+- Added `dev.architech.protv` to editor assembly `versionDefines` so `#if PSS_PROTV_INSTALLED` works in editor code independently of `PSS_AutoSetup`.
+
+---
+
 ## [0.1.10] — 2026-05-15
 
 ### Fixed
