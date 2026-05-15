@@ -38,6 +38,17 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Fall Zone Blackout Teleport");
         }
 
+        // ── Persistence ──────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/Persistence/Position Persistence")]
+        static void SpawnPositionPersistence()
+        {
+            var go = new GameObject("PSS_PositionPersistence");
+            go.AddComponent<PSS_PositionPersistence>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Position Persistence");
+        }
+
         // ── Teleport ─────────────────────────────────────────────────────────
 
         [MenuItem("Tools/PSS/Spawn/Teleport/Interact Teleport")]

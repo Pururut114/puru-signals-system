@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.15] — 2026-05-15
+
+### Added
+- `PSS_PositionPersistence` (Standalone Utility) — saves and restores local player position/rotation between world visits using VRChat PlayerData API. `saveInterval` for periodic auto-save, `useCheckpointsOnly` to disable auto-loop and save only via `OnCheckpointReached()`. `_restored` guard prevents overwriting save data on first `SaveLoop` tick. Optional `onRestoredChannel` PSS integration fires after player is teleported to last saved position. Lives in `Modules/Standalone Utilities/Persistence/`.
+
+---
+
 ## [0.1.14] — 2026-05-15
 
 ### Added
