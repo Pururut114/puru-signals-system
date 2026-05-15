@@ -38,6 +38,17 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Fall Zone Blackout Teleport");
         }
 
+        // ── FX ───────────────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/FX/Fade On Join")]
+        static void SpawnFadeOnJoin()
+        {
+            var go = new GameObject("PSS_FadeOnJoin");
+            go.AddComponent<PSS_FadeOnJoin>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Fade On Join");
+        }
+
         // ── Select ───────────────────────────────────────────────────────────
 
         [MenuItem("Tools/PSS/Spawn/Select/Multi-Select Controller")]

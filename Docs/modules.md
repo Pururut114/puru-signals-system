@@ -51,6 +51,11 @@
 | `PSS_ZoneEnableWhileInside` | Включает/выключает объекты пока локальный игрок внутри trigger-зоны. Поддерживает invert-режим и стартовую проверку позиции |
 | `PSS_FallZoneBlackoutTeleport` | При входе в зону: fade to black (PPS v2) → телепорт → fade back. Защита от re-trigger во время анимации |
 
+### FX
+| Класс | Описание |
+|-------|----------|
+| `PSS_FadeOnJoin` | Fade PostProcessVolume weight 1→0 при старте мира. Hold → fade. `forceDarkFrames` защита от flash, `autoStart` или ручной `Begin()` |
+
 ### Select
 | Класс | Описание |
 |-------|----------|

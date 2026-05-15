@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.13] — 2026-05-15
+
+### Added
+- `PSS_FadeOnJoin` (Standalone Utility) — fades `PostProcessVolume.weight` from 1 to 0 on world join. Fields: `forceDarkFrames` (prevents flash during scene init), `holdSeconds` (hold darkness before fade), `fadeDuration`, `disableAfterFade` + `disableDelay` (disables volume GO after fade to free GPU), `autoStart`. Manual `Begin()` method for deferred or repeated use. Tick loop via `SendCustomEventDelayedFrames` — no `Update()`. Lives in `Modules/Standalone Utilities/FX/`.
+
+---
+
 ## [0.1.12] — 2026-05-15
 
 ### Added
