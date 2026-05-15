@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.7] — 2026-05-15
+
+### Fixed
+- Added `UdonSharpAssemblyDefinition` assets for all three PSS assemblies (`runtime`, `modules`, `ltcgi`). UdonSharp 1.x requires these files to recognize custom assembly definitions as "U# assemblies" — without them, every PSS script throws "does not belong to a U# assembly" and nothing compiles.
+- Removed `PSS_LtcgiControl.asset` (UdonSharpProgramAsset) from the package. When LTCGI is not installed, the LTCGI assembly is not compiled (`defineConstraints: PSS_LTCGI_INSTALLED` not met), so having a program asset for it caused 266+ repeated compilation errors. LTCGI users: enable the `PSS_LTCGI_INSTALLED` scripting define, then run `Tools > PSS > Repair Missing Program Assets`.
+
+---
+
 ## [0.1.6] — 2026-05-15
 
 ### Fixed

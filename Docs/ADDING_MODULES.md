@@ -15,9 +15,10 @@
 4. Поставить `[AddComponentMenu("PSS/Triggers/PSS_<Name> [Trigger]")]`
 5. Описать поля через `[PSS_Field(...)]`
 6. В нужном событии вызвать `Fire()` (или `FireWithPlayer(player)`)
-7. Добавить строку в `Docs/modules.md` (реестр)
-8. Добавить секцию в `Docs/CHEATSHEET.md` (пример сетапа)
-9. Добавить в `Editor/PSS_Wizard.cs` — новый вариант в `TriggerKind`, `TriggerType()`, `DrawTriggerFields()`, `ApplyTriggerFields()`
+7. **Запустить `_gen_meta_assets.py`** — сгенерирует `.asset` и `.meta` файлы рядом с `.cs`
+8. Добавить строку в `Docs/modules.md` (реестр)
+9. Добавить секцию в `Docs/CHEATSHEET.md` (пример сетапа)
+10. Добавить в `Editor/PSS_Wizard.cs` — новый вариант в `TriggerKind`, `TriggerType()`, `DrawTriggerFields()`, `ApplyTriggerFields()`
 
 ### Добавить Standalone Utility
 
@@ -26,9 +27,10 @@
 3. Поставить `[UdonBehaviourSyncMode(BehaviourSyncMode.None)]`
 4. Поставить `[AddComponentMenu("PSS/Standalone Utilities/<Category>/PSS_<Name> [Utility]")]`
 5. Поля — стандартные `[Header]` / `[Tooltip]`, без `[PSS_Field]`
-6. Добавить строку в `Docs/modules.md` → секция Standalone Utilities
-7. Добавить секцию в `Docs/STANDALONE_UTILITIES.md`
-8. Добавить `[MenuItem("Tools/PSS/Spawn/<Category>/<Name>")]` в `Editor/PSS_SpawnMenu.cs`
+6. **Запустить `_gen_meta_assets.py`** — сгенерирует `.asset` и `.meta` файлы рядом с `.cs`
+7. Добавить строку в `Docs/modules.md` → секция Standalone Utilities
+8. Добавить секцию в `Docs/STANDALONE_UTILITIES.md`
+9. Добавить `[MenuItem("Tools/PSS/Spawn/<Category>/<Name>")]` в `Editor/PSS_SpawnMenu.cs`
 
 > Wizard (`PSS_Wizard.cs`) не трогать — standalone утилиты живут отдельно.
 
@@ -42,9 +44,10 @@
 4. Поставить `[AddComponentMenu("PSS/Actions/PSS_<Name> [Action]")]`
 5. Описать поля через `[PSS_Field(...)]`
 6. Переопределить `protected override void OnExecute()`
-7. Добавить строку в `Docs/modules.md` (реестр)
-8. Добавить секцию в `Docs/CHEATSHEET.md` (пример сетапа)
-9. Добавить в `Editor/PSS_Wizard.cs` — новый вариант в `ActionKind`, `ActionType()`, `DrawActionFields()`, `ApplyActionFields()`
+7. **Запустить `_gen_meta_assets.py`** — сгенерирует `.asset` и `.meta` файлы рядом с `.cs`
+8. Добавить строку в `Docs/modules.md` (реестр)
+9. Добавить секцию в `Docs/CHEATSHEET.md` (пример сетапа)
+10. Добавить в `Editor/PSS_Wizard.cs` — новый вариант в `ActionKind`, `ActionType()`, `DrawActionFields()`, `ApplyActionFields()`
 
 ---
 
@@ -231,6 +234,10 @@ Modules/
 
 Пакет не требует изменений в ядре. Просто добавь папку с файлами.
 
+> **Если создаёшь НОВУЮ сборку (новый `.asmdef` файл):** рядом с ним нужно создать `UdonSharpAssemblyDefinition` ассет — иначе UdonSharp не распознает сборку как U# и все скрипты получат ошибку `"does not belong to a U# assembly"`.
+> В Unity: выдели `.asmdef` → right-click → **Create → U# Assembly Definition**.
+> Добавь созданный `.asset` и `.asset.meta` в git.
+
 ---
 
 ## UdonSharp ограничения
@@ -257,6 +264,8 @@ Modules/
 - [ ] Атрибуты `[PSS_Module]` и `[AddComponentMenu]` проставлены
 - [ ] Все поля с `[PSS_Field]` корректно отображаются в инспекторе
 - [ ] `OnExecute` (для Action) или `Fire()` (для Trigger) вызывается в правильный момент
+- [ ] `_gen_meta_assets.py` запущен — `.asset` и `.meta` файлы сгенерированы и лежат рядом с `.cs`
 - [ ] Строка добавлена в `Docs/modules.md`
 - [ ] Секция добавлена в `Docs/CHEATSHEET.md`
 - [ ] Добавлен в `Editor/PSS_Wizard.cs` (ActionKind/TriggerKind + все 3 switch-а)
+- [ ] `package.json` version обновлён, `CHANGELOG.md` заполнен
