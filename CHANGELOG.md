@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3] — 2026-05-15
+
+### Fixed
+- Build VPM Listing теперь корректно автотриггерится после Build Release (`workflow_run` вместо `release: published`)
+
+---
+
 ## [0.1.2] — 2026-05-15
 
 ### Fixed
