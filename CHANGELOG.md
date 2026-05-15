@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.6] — 2026-05-15
+
+### Fixed
+- Added `.meta` files and `UdonSharpProgramAsset` (`.asset`) files to the repository. This is the canonical VPM distribution approach (TLP, CyanTrigger, etc.) — assets ship inside the package with stable GUIDs, so UdonSharp can find them on any install without extra setup. Previously UdonSharp reported "does not belong to a U# assembly" because program assets were missing at import time.
+- `PSS_Setup.cs` simplified to a fallback repair tool (`Tools > PSS > Repair Missing Program Assets`). No longer auto-runs on load; correctly skips scripts that already have a program asset anywhere in the project to avoid duplicates.
+
+---
+
 ## [0.1.5] — 2026-05-15
 
 ### Fixed

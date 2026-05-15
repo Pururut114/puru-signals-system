@@ -1,5 +1,6 @@
 # Internal dev files
 PLAN.md
+_gen_meta_assets.py
 
 # Unity generated
 [Ll]ibrary/
