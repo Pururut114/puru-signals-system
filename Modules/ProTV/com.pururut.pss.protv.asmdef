@@ -5,6 +5,7 @@
         "VRC.Udon",
         "VRC.SDKBase",
         "UdonSharp.Runtime",
+        "ArchiTech.SDK.Runtime",
         "ArchiTech.ProTV.Runtime"
     ],
     "includePlatforms": [],

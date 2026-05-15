@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10] — 2026-05-15
+
+### Fixed
+- Added `ArchiTech.SDK.Runtime` to `com.pururut.pss.protv.asmdef` references. `ATEventHandler` (base class of `TVManagedWhitelist`) is defined in the SDK assembly, not in ProTV — without this reference the entire ProTV assembly failed to compile (`CS0012` / `CS1061`).
+
+---
+
 ## [0.1.9] — 2026-05-15
 
 ### Added
