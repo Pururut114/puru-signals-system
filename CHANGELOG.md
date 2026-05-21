@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.18] — 2026-05-22
+
+### Added
+- `SceneMaterialInspector` (Editor tool) — lists all scene materials grouped by shader. Per-material: checkbox (manual tracking), renderer count, replacement slot, Replace button with Undo support + scene dirty marking. Search filter, collapsible shader groups, "Найти объекты" selects all renderers using the material. `Tools > Scene Materials > Inspector`.
+- `SceneMaterialAnalyzer` (Editor tool) — scans scene for materials, reports texture memory per-material and total. Sortable (by name / memory desc), search filter, foldout per-material shows per-texture slot + memory. `Tools > Scene Materials > Analyzer`.
+
+---
+
 ## [0.1.17] — 2026-05-22
 
 ### Added
