@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.17] — 2026-05-22
+
+### Added
+- `PSS_ProTVAmbientFade` (ProTV Standalone Utility, conditional `PSS_PROTV_INSTALLED`) — ProTV plugin that fades ambient `AudioSource[]` to silence when playback starts and restores original volumes when playback stops. Original volumes captured once at `Start()`. Linear fade via `Update()` with configurable `fadeDownDuration` / `fadeUpDuration`. Spawn menu: `Tools > PSS > Spawn > ProTV > ProTV Ambient Fade`. Lives in `Modules/ProTV/`.
+
+---
+
 ## [0.1.16] — 2026-05-15
 
 ### Added

@@ -131,6 +131,16 @@ namespace PuruSignals.Editor
             PlaceInSceneView(go);
             RegisterAndSelect(go, "Create PSS ProTV Access Gate");
         }
+
+        [MenuItem("Tools/PSS/Spawn/ProTV/ProTV Ambient Fade")]
+        static void SpawnProTVAmbientFade()
+        {
+            var go = new GameObject("PSS_ProTVAmbientFade");
+            var type = FindType("PuruSignals.PSS_ProTVAmbientFade");
+            if (type != null) go.AddComponent(type);
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS ProTV Ambient Fade");
+        }
 #endif
 
         // ── Helpers ───────────────────────────────────────────────────────────
