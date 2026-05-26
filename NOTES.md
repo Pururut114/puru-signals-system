@@ -181,6 +181,7 @@ Repair-only режим: `Tools > PSS > Repair Missing Program Assets`.
 
 - Trigger/Action → добавить в `Editor/PSS_Wizard.cs`
 - **Standalone Utility → добавить в `Editor/PSS_SpawnMenu.cs`** (часто забывают)
+- **Standalone Utility → добавить `[PSS_Note("...")]` на класс** (одна строка, описание что делает)
 - Conditional assembly → добавить в `PSS_AutoSetup.SyncDefines()` + `_validate_release.py`
 - `_gen_meta_assets.py` запустить
 - `package.json` + `CHANGELOG.md` обновить
