@@ -406,6 +406,130 @@ PSS_ProTVAmbientFade
 
 ---
 
+## Access
+
+### PSS_AdminVisibility
+
+**Спавн:** `Tools > PSS > Spawn > Access > Admin Visibility`
+
+Включает `adminObjects` если локальный игрок есть в списке `adminNames`. Не-админы не затрагиваются — объекты остаются в состоянии, заданном в сцене.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `adminNames` | `string[]` | — | Display names администраторов |
+| `adminObjects` | `GameObject[]` | — | Включаются если игрок в списке. Не-админы: scene defaults |
+| `onAdminChannel` | `PSS_ChannelLocal` | — | Файрится если игрок админ |
+
+---
+
+### PSS_AdminVisibilityFull
+
+**Спавн:** `Tools > PSS > Spawn > Access > Admin Visibility Full`
+
+Явный контроль состояния для обеих сторон: `adminObjects` включаются для админов и выключаются для не-админов, `nonAdminObjects` — инверсно.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `adminNames` | `string[]` | — | Display names администраторов |
+| `adminObjects` | `GameObject[]` | — | Включены для админов, выключены для не-админов |
+| `nonAdminObjects` | `GameObject[]` | — | Выключены для админов, включены для не-админов |
+| `onAdminChannel` | `PSS_ChannelLocal` | — | Файрится если игрок админ |
+| `onNonAdminChannel` | `PSS_ChannelLocal` | — | Файрится если игрок не админ |
+
+---
+
+### PSS_InstanceOwnerVisibility
+
+**Спавн:** `Tools > PSS > Spawn > Access > Instance Owner Visibility`
+
+Включает/выключает объекты в зависимости от того, является ли локальный игрок создателем инстанса (`Networking.IsInstanceOwner`). Проверка однократная при старте.
+
+> **Ограничение:** `IsInstanceOwner` = `false` в Public и Group инстансах. Работает только в Invite/Friends/Friends+.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `ownerObjects` | `GameObject[]` | — | Включены для instance owner, выключены для остальных |
+| `nonOwnerObjects` | `GameObject[]` | — | Выключены для instance owner, включены для остальных |
+| `onOwnerChannel` | `PSS_ChannelLocal` | — | Файрится если игрок — instance owner |
+| `onNonOwnerChannel` | `PSS_ChannelLocal` | — | Файрится если игрок — не instance owner |
+
+---
+
+### PSS_MasterVisibility
+
+**Спавн:** `Tools > PSS > Spawn > Access > Master Visibility`
+
+Включает/выключает объекты для текущего master (старейший игрок в инстансе). При уходе master обновляется через `OnPlayerLeft`.
+
+> **Предупреждение:** `isMaster` не использовать для security — master это просто старейший игрок, не верифицированный владелец.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `masterObjects` | `GameObject[]` | — | Включены для master, выключены для остальных |
+| `nonMasterObjects` | `GameObject[]` | — | Выключены для master, включены для остальных |
+| `onMasterChannel` | `PSS_ChannelLocal` | — | Файрится когда локальный игрок становится master (на Start или когда уходит предыдущий) |
+| `onNonMasterChannel` | `PSS_ChannelLocal` | — | Файрится если игрок не master при старте |
+
+---
+
+### PSS_ZoneAdminVisibility
+
+**Спавн:** `Tools > PSS > Spawn > Access > Zone — Admin Visibility`
+
+Как `PSS_AdminVisibility`, но проверка происходит не при старте, а один раз когда локальный игрок входит в trigger-зону. Объекты остаются в состоянии после первого входа — выход из зоны ничего не меняет.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `adminNames` | `string[]` | — | Display names администраторов |
+| `adminObjects` | `GameObject[]` | — | Включаются при входе в зону если игрок в списке |
+| `zoneColliders` | `Collider[]` | — | Trigger-коллайдеры зоны. Пусто = автосбор с себя и детей |
+| `onAdminChannel` | `PSS_ChannelLocal` | — | Файрится один раз при входе если игрок админ |
+
+**Топология при спавне из меню:**
+```
+PSS_Zone_AdminVisibility
+├── BoxCollider  (isTrigger = true, size 4×3×4)
+└── PSS_ZoneAdminVisibility
+```
+
+---
+
+### PSS_ZoneAdminVisibilityFull
+
+**Спавн:** `Tools > PSS > Spawn > Access > Zone — Admin Visibility Full`
+
+Как `PSS_AdminVisibilityFull`, но проверка происходит один раз при входе в trigger-зону.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `adminNames` | `string[]` | — | Display names администраторов |
+| `adminObjects` | `GameObject[]` | — | Включены для админов, выключены для не-админов |
+| `nonAdminObjects` | `GameObject[]` | — | Выключены для админов, включены для не-админов |
+| `zoneColliders` | `Collider[]` | — | Trigger-коллайдеры зоны. Пусто = автосбор с себя и детей |
+| `onAdminChannel` | `PSS_ChannelLocal` | — | Файрится один раз при входе если игрок админ |
+| `onNonAdminChannel` | `PSS_ChannelLocal` | — | Файрится один раз при входе если игрок не админ |
+
+**Топология при спавне из меню:**
+```
+PSS_Zone_AdminVisibilityFull
+├── BoxCollider  (isTrigger = true, size 4×3×4)
+└── PSS_ZoneAdminVisibilityFull
+```
+
+---
+
 ## Добавить новую утилиту
 
 Краткий чеклист — полная инструкция в `Docs/ADDING_MODULES.md`:

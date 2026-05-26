@@ -119,6 +119,74 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Multi-Select Button");
         }
 
+        // ── Access ───────────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/Access/Admin Visibility")]
+        static void SpawnAdminVisibility()
+        {
+            var go = new GameObject("PSS_AdminVisibility");
+            go.AddComponent<PSS_AdminVisibility>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Admin Visibility");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Access/Admin Visibility Full")]
+        static void SpawnAdminVisibilityFull()
+        {
+            var go = new GameObject("PSS_AdminVisibilityFull");
+            go.AddComponent<PSS_AdminVisibilityFull>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Admin Visibility Full");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Access/Instance Owner Visibility")]
+        static void SpawnInstanceOwnerVisibility()
+        {
+            var go = new GameObject("PSS_InstanceOwnerVisibility");
+            go.AddComponent<PSS_InstanceOwnerVisibility>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Instance Owner Visibility");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Access/Master Visibility")]
+        static void SpawnMasterVisibility()
+        {
+            var go = new GameObject("PSS_MasterVisibility");
+            go.AddComponent<PSS_MasterVisibility>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Master Visibility");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Access/Zone — Admin Visibility")]
+        static void SpawnZoneAdminVisibility()
+        {
+            var go = new GameObject("PSS_Zone_AdminVisibility");
+
+            var col = go.AddComponent<BoxCollider>();
+            col.isTrigger = true;
+            col.size = new Vector3(4f, 3f, 4f);
+
+            go.AddComponent<PSS_ZoneAdminVisibility>();
+
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Zone Admin Visibility");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Access/Zone — Admin Visibility Full")]
+        static void SpawnZoneAdminVisibilityFull()
+        {
+            var go = new GameObject("PSS_Zone_AdminVisibilityFull");
+
+            var col = go.AddComponent<BoxCollider>();
+            col.isTrigger = true;
+            col.size = new Vector3(4f, 3f, 4f);
+
+            go.AddComponent<PSS_ZoneAdminVisibilityFull>();
+
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Zone Admin Visibility Full");
+        }
+
         // ── ProTV (conditional) ───────────────────────────────────────────────
 
 #if PSS_PROTV_INSTALLED

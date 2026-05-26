@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.19] — 2026-05-26
+
+### Added
+- **Access** category of Standalone Utilities (6 scripts):
+- `PSS_AdminVisibility` — enables `adminObjects` for players in admin name list; non-admins untouched (scene defaults). Optional `onAdminChannel`.
+- `PSS_AdminVisibilityFull` — explicit both-state control: `adminObjects` on/off by admin status, `nonAdminObjects` inverted. Optional `onAdminChannel` / `onNonAdminChannel`.
+- `PSS_InstanceOwnerVisibility` — enables/disables objects for `Networking.IsInstanceOwner`. Static check on Start. Only works in Invite/Friends/Friends+ instances.
+- `PSS_MasterVisibility` — enables/disables objects for current master (`Networking.IsMaster`). Dynamic: re-evaluates via `OnPlayerLeft` when master changes.
+- `PSS_ZoneAdminVisibility` — like `AdminVisibility` but triggered once when local player enters a trigger zone. Auto-collects trigger colliders from children.
+- `PSS_ZoneAdminVisibilityFull` — like `AdminVisibilityFull` but triggered once on zone entry.
+- All Access scripts spawn via `Tools > PSS > Spawn > Access > ...`
+
+---
+
 ## [0.1.18] — 2026-05-22
 
 ### Added

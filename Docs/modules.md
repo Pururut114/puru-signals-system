@@ -74,6 +74,16 @@
 | `PSS_MultiSelectController` | Synced radio-selector (Manual): ровно один из targets включён по индексу. -1 = все выключены. `SelectToggle`, `broadcastApplyForInstantFeedback`, опциональные `onSelectChannels` |
 | `PSS_MultiSelectButton` | Кнопка для PSS_MultiSelectController. Выбирает индекс или SelectNone. Поддерживает toggleMode |
 
+### Access
+| Класс | Описание |
+|-------|----------|
+| `PSS_AdminVisibility` | Включает объекты если локальный игрок в списке adminNames. Не-админы: scene defaults (не трогает) |
+| `PSS_AdminVisibilityFull` | Явный контроль для обеих сторон: adminObjects вкл/выкл по admin-статусу, nonAdminObjects — инверсно |
+| `PSS_InstanceOwnerVisibility` | Включает/выключает объекты для создателя инстанса. Только Invite/Friends/Friends+ инстансы |
+| `PSS_MasterVisibility` | Включает/выключает объекты для текущего master. Обновляется через OnPlayerLeft. Не использовать для security |
+| `PSS_ZoneAdminVisibility` | Как AdminVisibility, но проверка происходит один раз при входе локального игрока в trigger-зону |
+| `PSS_ZoneAdminVisibilityFull` | Как AdminVisibilityFull, но проверка происходит один раз при входе локального игрока в trigger-зону |
+
 ---
 
 ## Physics
