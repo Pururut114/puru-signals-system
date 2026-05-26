@@ -2,24 +2,22 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UdonSharpEditor;
 
 namespace PuruSignals.Editor
 {
-    [InitializeOnLoad]
-    public static class PSS_StandaloneUtilityEditor
+    public class PSS_StandaloneUtilityEditor : UnityEditor.Editor
     {
-        static PSS_StandaloneUtilityEditor()
+        public override void OnInspectorGUI()
         {
-            UnityEditor.Editor.finishedDefaultHeaderGUI += OnHeaderGUI;
-        }
+            if (UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader(target)) return;
 
-        static void OnHeaderGUI(UnityEditor.Editor editor)
-        {
-            if (editor.target == null) return;
             var note = (PSS_NoteAttribute)Attribute.GetCustomAttribute(
-                editor.target.GetType(), typeof(PSS_NoteAttribute));
-            if (note == null) return;
-            EditorGUILayout.HelpBox(note.Text, MessageType.None);
+                target.GetType(), typeof(PSS_NoteAttribute));
+            if (note != null)
+                EditorGUILayout.HelpBox(note.Text, MessageType.None);
+
+            DrawDefaultInspector();
         }
     }
 }
