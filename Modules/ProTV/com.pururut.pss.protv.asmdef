@@ -2,6 +2,7 @@
     "name": "com.pururut.pss.protv",
     "rootNamespace": "PuruSignals",
     "references": [
+        "com.pururut.pss.runtime",
         "VRC.Udon",
         "VRC.SDKBase",
         "UdonSharp.Runtime",

@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     [AddComponentMenu("PSS/Standalone Utilities/Select/PSS_MultiSelectController [Utility]")]
+    [PSS_Note("Network-synced radio selector: exactly one of targets[] active at a time. index -1 disables all. Use alongside PSS_MultiSelectButton.")]
     public class PSS_MultiSelectController : UdonSharpBehaviour
     {
         [Header("Targets (mutually exclusive)")]

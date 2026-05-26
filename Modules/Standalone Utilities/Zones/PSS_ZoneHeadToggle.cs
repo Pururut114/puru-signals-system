@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Zones/PSS_ZoneHeadToggle [Utility]")]
+    [PSS_Note("Activates enableTargets / deactivates disableTargets while the local player's head is inside the BoxCollider. OBB-correct — works with rotated or scaled colliders.")]
     public class PSS_ZoneHeadToggle : UdonSharpBehaviour
     {
         [Header("Targets")]

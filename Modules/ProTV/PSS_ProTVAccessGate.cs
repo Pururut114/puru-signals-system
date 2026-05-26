@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/ProTV/PSS_ProTVAccessGate [Utility]")]
+    [PSS_Note("ProTV access gate: checks TVManager + TVManagedWhitelist auth and applies teleport, avatar scaling, object/pickup restriction. Requires PSS_PROTV_INSTALLED.")]
     public class PSS_ProTVAccessGate : UdonSharpBehaviour
     {
         [Header("ProTV references (auto-fetched from parent if empty)")]

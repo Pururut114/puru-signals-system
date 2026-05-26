@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Economy/PSS_OpenListing [Utility]")]
+    [PSS_Note("Opens a listing purchase screen on Interact. Optional timedObject briefly activates (e.g. an ad poster) and auto-hides after activeDuration seconds.")]
     public class PSS_OpenListing : UdonSharpBehaviour
     {
         [Header("Listing")]

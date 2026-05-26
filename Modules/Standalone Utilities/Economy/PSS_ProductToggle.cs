@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Economy/PSS_ProductToggle [Utility]")]
+    [PSS_Note("Toggles targets[] based on UdonProduct ownership. defaultState = active state when not owned. localOnly = track local player only.")]
     public class PSS_ProductToggle : UdonSharpBehaviour
     {
         [Header("Product")]

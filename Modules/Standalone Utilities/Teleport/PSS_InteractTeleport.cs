@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Teleport/PSS_InteractTeleport [Utility]")]
+    [PSS_Note("Teleports the local player to destination on Interact. Optional PostFX blackout transition. triggerOnce disables the collider after first use.")]
     public class PSS_InteractTeleport : UdonSharpBehaviour
     {
         [Header("Teleport")]

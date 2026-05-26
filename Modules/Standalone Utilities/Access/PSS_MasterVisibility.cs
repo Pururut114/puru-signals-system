@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Access/PSS_MasterVisibility [Utility]")]
+    [PSS_Note("Enables masterObjects for the current master player. Re-evaluates on OnPlayerLeft when master changes. Do not rely on for security — master is the oldest player, not a verified role.")]
     public class PSS_MasterVisibility : UdonSharpBehaviour
     {
         [Header("NOTE: Do not use for security — master is oldest player, not verified owner")]

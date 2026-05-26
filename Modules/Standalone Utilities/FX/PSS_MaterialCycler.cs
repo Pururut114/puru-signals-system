@@ -5,6 +5,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/FX/PSS_MaterialCycler [Utility]")]
+    [PSS_Note("Cycles through materials[] randomly at each interval, skipping immediate repeats. Begin() / Stop() / Next() for external control. autoStart enabled by default.")]
     public class PSS_MaterialCycler : UdonSharpBehaviour
     {
         [Header("Setup")]

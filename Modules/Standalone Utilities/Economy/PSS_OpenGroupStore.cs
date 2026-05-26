@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Economy/PSS_OpenGroupStore [Utility]")]
+    [PSS_Note("Opens the group store or group info page on Interact or via Open(). Set groupId (grp_...) and toggle openToStorePage.")]
     public class PSS_OpenGroupStore : UdonSharpBehaviour
     {
         [Header("Group")]

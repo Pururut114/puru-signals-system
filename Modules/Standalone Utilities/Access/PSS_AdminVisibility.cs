@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Access/PSS_AdminVisibility [Utility]")]
+    [PSS_Note("Enables adminObjects for players in adminNames. Non-admin players are untouched — their scene defaults are preserved.")]
     public class PSS_AdminVisibility : UdonSharpBehaviour
     {
         [Header("Admin display names")]

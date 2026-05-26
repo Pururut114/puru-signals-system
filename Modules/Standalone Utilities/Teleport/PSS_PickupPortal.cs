@@ -8,6 +8,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Teleport/PSS_PickupPortal [Utility]")]
+    [PSS_Note("Teleports the local player to playerDestination when the pickup is used. Optional PostFX blackout, drop after use, and pickup respawn to remoteRespawnPoint.")]
     public class PSS_PickupPortal : UdonSharpBehaviour
     {
         [Header("Teleport")]

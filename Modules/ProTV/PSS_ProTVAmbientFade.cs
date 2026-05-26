@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/ProTV/PSS_ProTVAmbientFade [Utility]")]
+    [PSS_Note("ProTV plugin: fades ambient AudioSource[] to silence when playback starts, restores original volumes when playback stops. Configurable fadeDownDuration / fadeUpDuration.")]
     public class PSS_ProTVAmbientFade : TVPlugin
     {
         [Header("Ambient Sources")]

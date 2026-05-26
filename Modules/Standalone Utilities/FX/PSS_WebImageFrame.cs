@@ -8,6 +8,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/FX/PSS_WebImageFrame [Utility]")]
+    [PSS_Note("Downloads imageUrl and applies it to the renderer slot via MaterialPropertyBlock. Call BeginDownload() to re-fetch. Shows fallbackTexture before load and on error.")]
     public class PSS_WebImageFrame : UdonSharpBehaviour
     {
         [Header("Target")]

@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Economy/PSS_ProductToggleFull [Utility]")]
+    [PSS_Note("Two-list toggle by product ownership: enableWhenOwned[] on / enableWhenNotOwned[] off for owners, inverted for others. Players in adminNames bypass the purchase check.")]
     public class PSS_ProductToggleFull : UdonSharpBehaviour
     {
         [Header("Product")]

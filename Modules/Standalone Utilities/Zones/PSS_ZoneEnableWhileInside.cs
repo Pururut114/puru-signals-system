@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Zones/PSS_ZoneEnableWhileInside [Utility]")]
+    [PSS_Note("Enables targets[] while the local player is inside the trigger collider. Set invert = true to enable while outside instead.")]
     public class PSS_ZoneEnableWhileInside : UdonSharpBehaviour
     {
         [Header("Objects to enable while local player is inside the zone")]

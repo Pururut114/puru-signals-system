@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.22] — 2026-05-26
+
+### Added
+- `PSS_NoteAttribute` — `[PSS_Note("...")]` class attribute for embedding always-visible help text in the Unity Inspector. Lives in `Runtime/`.
+- `PSS_StandaloneUtilityEditor` (Editor) — fallback `[CustomEditor(typeof(UdonSharpBehaviour), true)]` that reads `[PSS_Note]` and draws an `EditorGUILayout.HelpBox` above inspector fields. Calls `UdonSharpGUI.DrawDefaultUdonSharpBehaviourHeader` + `DrawDefaultInspector` so the full UdonSharp inspector is preserved.
+- `[PSS_Note]` added to all 25 Standalone Utility scripts (Zones, Select, FX, Teleport, Persistence, Access, Economy, ProTV).
+
+### Changed
+- `com.pururut.pss.protv.asmdef` — added `com.pururut.pss.runtime` reference so ProTV scripts can use `[PSS_Note]`.
+
+---
+
 ## [0.1.21] — 2026-05-26
 
 ### Added

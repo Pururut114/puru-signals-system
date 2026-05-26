@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Select/PSS_MultiSelectButton [Utility]")]
+    [PSS_Note("Interact button for PSS_MultiSelectController. Calls SelectIndex / SelectToggle / SelectNone on interact. toggleMode deselects on repeat press.")]
     public class PSS_MultiSelectButton : UdonSharpBehaviour
     {
         [Header("Controller")]

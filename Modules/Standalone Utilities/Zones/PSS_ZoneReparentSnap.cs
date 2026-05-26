@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Zones/PSS_ZoneReparentSnap [Utility]")]
+    [PSS_Note("Reparents targetRoot to enterMarker when the local player enters the zone, with optional position/rotation/scale snap. exitMarker reparents on exit.")]
     public class PSS_ZoneReparentSnap : UdonSharpBehaviour
     {
         [Header("Target")]

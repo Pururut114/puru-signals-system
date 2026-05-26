@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Zones/PSS_FallZoneBlackoutTeleport [Utility]")]
+    [PSS_Note("Teleports the local player on trigger enter with a PostFX blackout transition: fade in → hold → teleport → fade out.")]
     public class PSS_FallZoneBlackoutTeleport : UdonSharpBehaviour
     {
         [Header("PostFX (PPS v2) — нужен профиль с затемнением")]

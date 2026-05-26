@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Access/PSS_ZoneAdminVisibility [Utility]")]
+    [PSS_Note("Enables adminObjects for admins on first zone entry. Non-admins untouched. Checked once on enter — not continuous.")]
     public class PSS_ZoneAdminVisibility : UdonSharpBehaviour
     {
         [Header("Admin display names")]

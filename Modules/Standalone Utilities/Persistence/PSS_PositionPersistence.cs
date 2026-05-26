@@ -7,6 +7,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Persistence/PSS_PositionPersistence [Utility]")]
+    [PSS_Note("Saves and restores the local player's position/rotation between world visits using VRChat PlayerData API. saveInterval for periodic auto-save.")]
     public class PSS_PositionPersistence : UdonSharpBehaviour
     {
         [Header("Save Settings")]

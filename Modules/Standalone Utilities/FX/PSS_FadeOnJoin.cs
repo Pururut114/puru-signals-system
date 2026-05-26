@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/FX/PSS_FadeOnJoin [Utility]")]
+    [PSS_Note("Fades PostProcessVolume.weight from 1 to 0 on world join. Supports pre-fade hold and auto-disable after fade to free GPU. Call Begin() for deferred or repeated use.")]
     public class PSS_FadeOnJoin : UdonSharpBehaviour
     {
         [Header("Volume")]

@@ -6,6 +6,7 @@ namespace PuruSignals
 {
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/Standalone Utilities/Access/PSS_InstanceOwnerVisibility [Utility]")]
+    [PSS_Note("Enables ownerObjects / disables nonOwnerObjects for the instance owner. Only works in Invite, Friends, and Friends+ instances — false in Public and Group.")]
     public class PSS_InstanceOwnerVisibility : UdonSharpBehaviour
     {
         [Header("NOTE: IsInstanceOwner = false in Public and Group instances")]
