@@ -46,7 +46,14 @@ git push origin --delete vX.X.X && git tag -d vX.X.X
 ### `build-listing.yml`
 Триггер: `workflow_run` после успешного `release.yml`, также `workflow_dispatch`.  
 Генерирует `index.json` из всех GitHub Releases → пушит напрямую в ветку `gh-pages`.  
-**Важно:** триггер `release: published` НЕ работает — GitHub блокирует события от GITHUB_TOKEN. Используется `workflow_run`.
+**Важно:** триггер `release: published` НЕ работает — GitHub блокирует события от GITHUB_TOKEN. Используется `workflow_run`.  
+**Race condition:** `workflow_run` иногда стартует до того как новый релиз становится виден в GitHub API → 0.1.XX не попадает в index. Если так — запустить вручную:
+```powershell
+$TOKEN = "..."  # из memory github_token.md
+Invoke-RestMethod -Method POST "https://api.github.com/repos/Pururut114/puru-signals-system/actions/workflows/build-listing.yml/dispatches" `
+  -Headers @{"Authorization"="token $TOKEN"; "Accept"="application/vnd.github+json"} `
+  -Body '{"ref":"main"}'
+```
 
 ### GitHub Pages
 Режим: **`legacy`** (branch-based), источник — ветка `gh-pages`, путь `/`.  

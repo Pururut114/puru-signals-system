@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.21] — 2026-05-26
+
+### Added
+- `PSS_ZoneHeadToggle` (Standalone Utility) — activates `enableTargets[]` / deactivates `disableTargets[]` while the local player's **head** is inside a BoxCollider. Uses OBB test (`InverseTransformPoint` + local size) — correct with any collider rotation and scale, unlike AABB `bounds.Contains`. State-change detection: `Apply()` only fires on enter/exit, not every frame. Spawn: `Tools > PSS > Spawn > Zones > Zone — Head Toggle`.
+- `PSS_MaterialCycler` (Standalone Utility) — randomly cycles materials on a `MeshRenderer` at a set `interval`. Avoids immediate repeat. `autoStart` toggle; `Begin()` / `Stop()` / `Next()` public methods for external control. Uses `sharedMaterial` to avoid per-cycle instance allocation. Spawn: `Tools > PSS > Spawn > FX > Material Cycler`.
+- `PSS_WebImageFrame` (Standalone Utility) — downloads an image from a `VRCUrl` via `VRCImageDownloader` and applies it to a specific material slot on a `Renderer` using `MaterialPropertyBlock`. Supports albedo + emission with tint and intensity. `fallbackTexture` shown before load and on error. `BeginDownload()` public method for manual re-fetch. Properly disposes downloader on `OnDisable`. Spawn: `Tools > PSS > Spawn > FX > Web Image Frame`.
+
+---
+
 ## [0.1.20] — 2026-05-26
 
 ### Added

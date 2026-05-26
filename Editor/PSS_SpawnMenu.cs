@@ -38,6 +38,20 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Zone Reparent Snap");
         }
 
+        [MenuItem("Tools/PSS/Spawn/Zones/Zone — Head Toggle")]
+        static void SpawnZoneHeadToggle()
+        {
+            var go = new GameObject("PSS_Zone_HeadToggle");
+
+            var col = go.AddComponent<BoxCollider>();
+            col.size = new Vector3(4f, 3f, 4f);
+
+            go.AddComponent<PSS_ZoneHeadToggle>();
+
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Zone Head Toggle");
+        }
+
         [MenuItem("Tools/PSS/Spawn/Zones/Fall Zone — Blackout Teleport")]
         static void SpawnFallZoneBlackoutTeleport()
         {
@@ -95,6 +109,24 @@ namespace PuruSignals.Editor
             go.AddComponent<PSS_FadeOnJoin>();
             PlaceInSceneView(go);
             RegisterAndSelect(go, "Create PSS Fade On Join");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/FX/Web Image Frame")]
+        static void SpawnWebImageFrame()
+        {
+            var go = new GameObject("PSS_WebImageFrame");
+            go.AddComponent<PSS_WebImageFrame>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Web Image Frame");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/FX/Material Cycler")]
+        static void SpawnMaterialCycler()
+        {
+            var go = new GameObject("PSS_MaterialCycler");
+            go.AddComponent<PSS_MaterialCycler>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Material Cycler");
         }
 
         // ── Select ───────────────────────────────────────────────────────────
