@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.23] — 2026-05-26
+
+### Fixed
+- `PSS_StandaloneUtilityEditor` — replaced `[CustomEditor(typeof(UdonSharpBehaviour), true)]` fallback with `Editor.finishedDefaultHeaderGUI` event hook. The previous approach was overridden by UdonSharp's per-script generated editors; the event hook fires after the component header regardless of which editor is active.
+
+---
+
 ## [0.1.22] — 2026-05-26
 
 ### Added
