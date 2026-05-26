@@ -1,0 +1,413 @@
+{
+  "name": "Puru Signals System",
+  "id": "com.pururut.pss.listing",
+  "url": "https://Pururut114.github.io/puru-signals-system/index.json",
+  "author": "Pururut114",
+  "description": "Event-driven framework for VRChat worlds. Trigger \u0432\u2020\u2019 Channel \u0432\u2020\u2019 Action pipeline with Standalone Utilities.",
+  "packages": {
+    "com.pururut.pss": {
+      "versions": {
+        "0.1.19": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.19",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.19/com.pururut.pss-0.1.19.zip"
+        },
+        "0.1.18": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.18",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.18/com.pururut.pss-0.1.18.zip"
+        },
+        "0.1.17": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.17",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.17/com.pururut.pss-0.1.17.zip"
+        },
+        "0.1.16": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.16",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.16/com.pururut.pss-0.1.16.zip"
+        },
+        "0.1.15": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.15",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.15/com.pururut.pss-0.1.15.zip"
+        },
+        "0.1.14": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.14",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.14/com.pururut.pss-0.1.14.zip"
+        },
+        "0.1.13": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.13",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.13/com.pururut.pss-0.1.13.zip"
+        },
+        "0.1.12": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.12",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.12/com.pururut.pss-0.1.12.zip"
+        },
+        "0.1.11": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.11",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.11/com.pururut.pss-0.1.11.zip"
+        },
+        "0.1.10": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.10",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.10/com.pururut.pss-0.1.10.zip"
+        },
+        "0.1.9": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.9",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.9/com.pururut.pss-0.1.9.zip"
+        },
+        "0.1.8": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.8",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.8/com.pururut.pss-0.1.8.zip"
+        },
+        "0.1.7": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.7",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.7/com.pururut.pss-0.1.7.zip"
+        },
+        "0.1.6": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.6",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.6/com.pururut.pss-0.1.6.zip"
+        },
+        "0.1.5": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.5",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.5/com.pururut.pss-0.1.5.zip"
+        },
+        "0.1.4": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.4",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.4/com.pururut.pss-0.1.4.zip"
+        },
+        "0.1.3": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.3",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.3/com.pururut.pss-0.1.3.zip"
+        },
+        "0.1.2": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.2",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.2/com.pururut.pss-0.1.2.zip"
+        },
+        "0.1.1": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.1",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.1/com.pururut.pss-0.1.1.zip"
+        },
+        "0.1.0": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.0",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.0/com.pururut.pss-0.1.0.zip"
+        }
+      }
+    }
+  }
+}
