@@ -7,6 +7,26 @@
   "packages": {
     "com.pururut.pss": {
       "versions": {
+        "0.1.23": {
+          "name": "com.pururut.pss",
+          "displayName": "Puru Signals System",
+          "version": "0.1.23",
+          "author": {
+            "name": "Pururut",
+            "email": "opleskach@readdle.com"
+          },
+          "unity": "2019.4",
+          "description": "Event-driven framework for VRChat worlds. Trigger \u2192 Channel \u2192 Action pipeline with Standalone Utilities.",
+          "license": "MIT",
+          "vpmDependencies": {
+            "com.vrchat.worlds": ">=3.1.0",
+            "com.vrchat.udonsharp": ">=1.1.8"
+          },
+          "dependencies": {
+            "com.unity.postprocessing": "3.2.2"
+          },
+          "url": "https://github.com/Pururut114/puru-signals-system/releases/download/v0.1.23/com.pururut.pss-0.1.23.zip"
+        },
         "0.1.22": {
           "name": "com.pururut.pss",
           "displayName": "Puru Signals System",
