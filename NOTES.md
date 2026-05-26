@@ -50,7 +50,20 @@ git push origin --delete vX.X.X && git tag -d vX.X.X
 
 ### GitHub Pages
 Режим: **`legacy`** (branch-based), источник — ветка `gh-pages`, путь `/`.  
-Ранее был `workflow` (deploy-pages), переключён 2026-05-26 из-за бага с `workflow_dispatch` (см. ниже).
+Ранее был `workflow` (deploy-pages), переключён 2026-05-26 из-за бага с `workflow_dispatch` (см. ниже).  
+`github-pages` environment **удалён** — имел `branch_policy` protection rule, мешал деплою.  
+В `gh-pages` обязательно должен быть `.nojekyll` — без него Jekyll builder падает.
+
+**Если Pages не задеплоился после пуша в `gh-pages`** (ручной триггер):
+```powershell
+$TOKEN = "..."  # из git credential / см. memory github_token.md
+Invoke-RestMethod -Method POST "https://api.github.com/repos/Pururut114/puru-signals-system/pages/builds" `
+  -Headers @{"Authorization"="token $TOKEN"; "Accept"="application/vnd.github+json"}
+# Проверить статус:
+Invoke-RestMethod "https://api.github.com/repos/Pururut114/puru-signals-system/pages/builds/latest" `
+  -Headers @{"Authorization"="token $TOKEN"; "Accept"="application/vnd.github+json"} | Select status, error
+```
+Статус GitHub: `https://www.githubstatus.com/`
 
 ---
 
@@ -65,6 +78,10 @@ git push origin --delete vX.X.X && git tag -d vX.X.X
 2. `index.json` сгенерирован локально (тот же Python-скрипт из `build-listing.yml`)
 3. Создана ветка `gh-pages` с `index.json`, Pages переключён в `legacy` режим
 4. `build-listing.yml` переписан: вместо `actions/deploy-pages` — git push в `gh-pages`
+5. `github-pages` environment удалён (имел `branch_policy` protection rule — мешал деплою)
+6. В `gh-pages` добавлен `.nojekyll` (без него Jekyll builder падал с "Page build failed")
+
+**Итог:** задеплоено 2026-05-26 вечером. VPM index содержит 0.1.19. GitHub был деградирован в течение дня — Pages билд завис, после восстановления GitHub задеплоился штатно.
 
 **Если повторится (release.yml не триггернулся):**
 ```bash

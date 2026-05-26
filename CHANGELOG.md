@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.20] — 2026-05-26
+
+### Added
+- **Economy** category of Standalone Utilities (5 scripts) for VRChat Creator Economy integration:
+- `PSS_ProductToggle` — toggles `targets[]` based on product ownership. `defaultState` = active state when not owned. Supports `localOnly` mode. Initialized via `OnPurchasesLoaded`.
+- `PSS_ProductToggleFull` — two-list toggle (`enableWhenOwned` / `enableWhenNotOwned`) with admin name override: matching players are treated as product owners without a purchase.
+- `PSS_OpenWorldStore` — opens the world store page on Interact or via `Open()` method call.
+- `PSS_OpenGroupStore` — opens group info or store page (`openToStorePage` toggle). Default group ID pre-filled.
+- `PSS_OpenListing` — opens a listing purchase screen on Interact. Optional `timedObject` that activates temporarily (e.g. an ad poster); auto-hides after `activeDuration` seconds.
+- All Economy scripts spawn via `Tools > PSS > Spawn > Economy > ...`
+
+---
+
 ## [0.1.19] — 2026-05-26
 
 ### Added

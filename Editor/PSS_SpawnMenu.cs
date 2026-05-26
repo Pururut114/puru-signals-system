@@ -187,6 +187,53 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Zone Admin Visibility Full");
         }
 
+        // ── Economy ──────────────────────────────────────────────────────────
+
+        [MenuItem("Tools/PSS/Spawn/Economy/Product Toggle")]
+        static void SpawnProductToggle()
+        {
+            var go = new GameObject("PSS_ProductToggle");
+            go.AddComponent<PSS_ProductToggle>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Product Toggle");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Economy/Product Toggle Full")]
+        static void SpawnProductToggleFull()
+        {
+            var go = new GameObject("PSS_ProductToggleFull");
+            go.AddComponent<PSS_ProductToggleFull>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Product Toggle Full");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Economy/Open World Store")]
+        static void SpawnOpenWorldStore()
+        {
+            var go = new GameObject("PSS_OpenWorldStore");
+            go.AddComponent<PSS_OpenWorldStore>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Open World Store");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Economy/Open Group Store")]
+        static void SpawnOpenGroupStore()
+        {
+            var go = new GameObject("PSS_OpenGroupStore");
+            go.AddComponent<PSS_OpenGroupStore>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Open Group Store");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/Economy/Open Listing")]
+        static void SpawnOpenListing()
+        {
+            var go = new GameObject("PSS_OpenListing");
+            go.AddComponent<PSS_OpenListing>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Open Listing");
+        }
+
         // ── ProTV (conditional) ───────────────────────────────────────────────
 
 #if PSS_PROTV_INSTALLED
