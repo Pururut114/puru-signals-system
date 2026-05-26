@@ -40,11 +40,49 @@ git push origin --delete vX.X.X && git tag -d vX.X.X
 ## GitHub Actions
 
 ### `release.yml`
-Триггер: `git push origin v*` → создаёт `.zip` + GitHub Release. Node.js читает `package.json`.
+Триггер: `git push origin v*` → создаёт `.zip` + GitHub Release. Node.js читает `package.json`.  
+Также имеет `workflow_dispatch` — можно запустить вручную через GitHub UI или API.
 
 ### `build-listing.yml`
-Триггер: `workflow_run` после успешного `release.yml`.  
+Триггер: `workflow_run` после успешного `release.yml`, также `workflow_dispatch`.  
+Генерирует `index.json` из всех GitHub Releases → пушит напрямую в ветку `gh-pages`.  
 **Важно:** триггер `release: published` НЕ работает — GitHub блокирует события от GITHUB_TOKEN. Используется `workflow_run`.
+
+### GitHub Pages
+Режим: **`legacy`** (branch-based), источник — ветка `gh-pages`, путь `/`.  
+Ранее был `workflow` (deploy-pages), переключён 2026-05-26 из-за бага с `workflow_dispatch` (см. ниже).
+
+---
+
+## Инцидент v0.1.19 — 2026-05-26
+
+**Что случилось:** после `git push origin v0.1.19` workflow `release.yml` не триггернулся. Причина неизвестна — тег на GitHub был, workflow активен, token с нужными scopes, но `workflow_dispatch` через API возвращал `500 Failed to run workflow dispatch` на оба workflow.
+
+**Подозрение:** баг GitHub, связанный с `branch_policy` protection rule на `github-pages` environment. Окончательная причина не установлена.
+
+**Как решили:**
+1. Release v0.1.19 создан вручную через GitHub API + zip загружен как asset
+2. `index.json` сгенерирован локально (тот же Python-скрипт из `build-listing.yml`)
+3. Создана ветка `gh-pages` с `index.json`, Pages переключён в `legacy` режим
+4. `build-listing.yml` переписан: вместо `actions/deploy-pages` — git push в `gh-pages`
+
+**Если повторится (release.yml не триггернулся):**
+```bash
+TOKEN="..."  # git credential fill → password
+
+# 1. Создать Release вручную
+curl -X POST "https://api.github.com/repos/Pururut114/puru-signals-system/releases" \
+  -H "Authorization: token $TOKEN" \
+  -d '{"tag_name":"vX.X.X","name":"Puru Signals System X.X.X","body":"..."}'
+
+# 2. Загрузить zip (создать его через Compress-Archive из папки репо)
+curl -X POST "https://uploads.github.com/repos/Pururut114/puru-signals-system/releases/<ID>/assets?name=com.pururut.pss-X.X.X.zip" \
+  -H "Authorization: token $TOKEN" -H "Content-Type: application/zip" \
+  --data-binary "@/path/to/com.pururut.pss-X.X.X.zip"
+
+# 3. Запустить build-listing через workflow_dispatch (если заработает)
+#    или запустить Python-скрипт из build-listing.yml локально → закоммитить в gh-pages
+```
 
 ---
 
