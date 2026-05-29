@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.25] — 2026-05-29
+
+### Added
+- `PSS_CameraLayerIsolation` — global standalone utility that strips selected layers (remote players, nameplates) from `VRCCameraSettings.ScreenCamera.CullingMask`. Independent toggles per layer. `Enable()` / `Disable()` for `PSS_CallMethod` integration. Compatible with `PSS_ZoneEnableWhileInside` via `OnEnable`/`OnDisable`. Requires VRChat SDK 3.9+.
+- `PSS_CameraLayerIsolationZone` — zone-based variant: activates layer stripping when the local player enters the trigger collider, restores on exit or respawn. `evaluateOnStart` for spawn-inside detection. Requires VRChat SDK 3.9+.
+
+---
+
 ## [0.1.24] — 2026-05-26
 
 ### Fixed

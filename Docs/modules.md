@@ -67,6 +67,8 @@
 | Класс | Описание |
 |-------|----------|
 | `PSS_FadeOnJoin` | Fade PostProcessVolume weight 1→0 при старте мира. Hold → fade. `forceDarkFrames` защита от flash, `autoStart` или ручной `Begin()` |
+| `PSS_CameraLayerIsolation` | Глобально убирает выбранные слои из ScreenCamera.CullingMask. Remote players и nameplates — раздельные тогглы. Enable()/Disable() для внешнего управления. SDK 3.9+ |
+| `PSS_CameraLayerIsolationZone` | Зональный вариант: стрипает слои пока локальный игрок внутри trigger-зоны, восстанавливает при выходе или respawn. SDK 3.9+ |
 
 ### Select
 | Класс | Описание |

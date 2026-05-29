@@ -289,6 +289,82 @@ PSS_FadeOnJoin
 
 ---
 
+### PSS_CameraLayerIsolation
+
+**Спавн:** `Tools > PSS > Spawn > FX > Camera Layer Isolation`
+
+Глобальный эффект — активен всегда пока компонент включён. Убирает выбранные слои из `VRCCameraSettings.ScreenCamera.CullingMask`. Remote players и nameplates контролируются независимо. При выключении GO, отключении компонента или `OnDestroy` маска восстанавливается к baseline.
+
+Требует VRChat SDK 3.9+.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `effectEnabled` | `bool` | `true` | Мастер-переключатель эффекта |
+| `stripRemotePlayers` | `bool` | `true` | Скрыть remote-игроков (layer 9) |
+| `stripNameplates` | `bool` | `true` | Скрыть UiMenu/nameplates (layer 12) |
+| `layerPlayerRemote` | `int` | `9` | Индекс слоя remote-игроков. Диапазон 0–31 |
+| `layerUiMenu` | `int` | `12` | Индекс слоя UiMenu (nameplates и др.). Диапазон 0–31 |
+
+**Методы:**
+- `Enable()` — включить эффект (для `PSS_CallMethod`)
+- `Disable()` — выключить эффект (для `PSS_CallMethod`)
+- `SetEffectEnabled(bool)` — включить/выключить с параметром
+
+**Как работает:**
+
+`LateUpdate` каждый кадр применяет или снимает стрип.  
+`OnVRCCameraSettingsChanged` перехватывает сбросы маски со стороны SDK.  
+`OnDisable` / `OnEnable` корректно управляются при включении/выключении GO — совместимо с `PSS_ZoneEnableWhileInside`.
+
+**Когда использовать:**
+- Глобальный always-on эффект — "этот мир без видимых игроков"
+- Управляемый через `PSS_ZoneEnableWhileInside` на GO со скриптом (вкл/выкл GO = вкл/выкл эффект)
+- Управляемый через `PSS_CallMethod` → `Enable()` / `Disable()`
+
+---
+
+### PSS_CameraLayerIsolationZone
+
+**Спавн:** `Tools > PSS > Spawn > FX > Camera Layer Isolation — Zone`
+
+Зональный вариант: эффект активен только пока локальный игрок находится внутри trigger-коллайдера. При входе — стрипает слои, при выходе или respawn — восстанавливает маску.
+
+Требует VRChat SDK 3.9+.
+
+**Поля:**
+
+| Поле | Тип | По умолчанию | Описание |
+|------|-----|-------------|----------|
+| `stripRemotePlayers` | `bool` | `true` | Скрыть remote-игроков (layer 9) |
+| `stripNameplates` | `bool` | `true` | Скрыть UiMenu/nameplates (layer 12) |
+| `layerPlayerRemote` | `int` | `9` | Индекс слоя remote-игроков. Диапазон 0–31 |
+| `layerUiMenu` | `int` | `12` | Индекс слоя UiMenu (nameplates и др.). Диапазон 0–31 |
+| `evaluateOnStart` | `bool` | `true` | Проверить стартовую позицию игрока (2-frame delay). Нужно если игрок спаунится внутри зоны |
+
+**Топология при спавне из меню:**
+```
+PSS_CameraLayerIsolation_Zone
+├── BoxCollider  (isTrigger = true, size 4×3×4)
+└── PSS_CameraLayerIsolationZone
+```
+
+**Как работает:**
+
+`OnPlayerTriggerEnter` / `OnPlayerTriggerExit` — основной механизм входа/выхода.  
+`OnPlayerRespawn` — сбрасывает состояние если игрок респаунится телепортом за пределы зоны (без exit-события).  
+`OnVRCCameraSettingsChanged` — переприменяет стрип если SDK сбросил маску пока игрок внутри.  
+`evaluateOnStart` — проверяет через 2 кадра находится ли игрок внутри `bounds` коллайдера на этом же GO.
+
+> **Ограничение `evaluateOnStart`:** проверка через `Collider.bounds.Contains` использует AABB (axis-aligned bounding box). Для повёрнутых BoxCollider'ов bounds шире реальной зоны. Ложноположительные срабатывания возможны на краях. Для старта это приемлемо.
+
+**Когда использовать:**
+- Зоны "изоляции" — игрок вошёл → не видит других, вышел → видит снова
+- Атмосферные пространства где присутствие других игроков ломает иммерсию только в конкретной области
+
+---
+
 ## Select
 
 ### PSS_MultiSelectController

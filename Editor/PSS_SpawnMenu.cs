@@ -129,6 +129,30 @@ namespace PuruSignals.Editor
             RegisterAndSelect(go, "Create PSS Material Cycler");
         }
 
+        [MenuItem("Tools/PSS/Spawn/FX/Camera Layer Isolation")]
+        static void SpawnCameraLayerIsolation()
+        {
+            var go = new GameObject("PSS_CameraLayerIsolation");
+            go.AddComponent<PSS_CameraLayerIsolation>();
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Camera Layer Isolation");
+        }
+
+        [MenuItem("Tools/PSS/Spawn/FX/Camera Layer Isolation — Zone")]
+        static void SpawnCameraLayerIsolationZone()
+        {
+            var go = new GameObject("PSS_CameraLayerIsolation_Zone");
+
+            var col = go.AddComponent<BoxCollider>();
+            col.isTrigger = true;
+            col.size = new Vector3(4f, 3f, 4f);
+
+            go.AddComponent<PSS_CameraLayerIsolationZone>();
+
+            PlaceInSceneView(go);
+            RegisterAndSelect(go, "Create PSS Camera Layer Isolation Zone");
+        }
+
         // ── Select ───────────────────────────────────────────────────────────
 
         [MenuItem("Tools/PSS/Spawn/Select/Multi-Select Controller")]
