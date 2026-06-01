@@ -62,6 +62,7 @@ namespace PuruSignals
             if (!player.isLocal) return;
             _insideZone = false;
             RestoreCullingMaskIfNeeded();
+            SendCustomEventDelayedFrames(nameof(_EvaluateStart), 2);
         }
 
         public override void OnVRCCameraSettingsChanged(VRCCameraSettings cameraSettings)

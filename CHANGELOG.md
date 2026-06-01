@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.26] — 2026-06-01
+
+### Fixed
+- `PSS_CameraLayerIsolationZone` — after respawn, re-evaluate zone membership via `_EvaluateStart` (2-frame delay). Previously, respawning inside the zone left layer stripping disabled until the player exited and re-entered.
+
+---
+
 ## [0.1.25] — 2026-05-29
 
 ### Added

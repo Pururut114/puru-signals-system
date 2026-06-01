@@ -183,7 +183,7 @@ Repair-only режим: `Tools > PSS > Repair Missing Program Assets`.
 - **Standalone Utility → добавить в `Editor/PSS_SpawnMenu.cs`** (часто забывают)
 - **Standalone Utility → добавить `[PSS_Note("...")]` на класс** (одна строка, описание что делает)
 - Conditional assembly → добавить в `PSS_AutoSetup.SyncDefines()` + `_validate_release.py`
-- `_gen_meta_assets.py` запустить — Pass 3 автоматически создаёт `Editor/Generated/PSS_<Name>Editor.cs` для каждой standalone utility
+- `_gen_meta_assets.py` запустить — **сначала добавить путь нового `.cs` в `BEHAVIOURS` set в начале скрипта**, иначе Pass 2 (`.asset`) и Pass 3 (editor stub) пропустят файл. Только `.cs.meta` создастся автоматически.
 - `package.json` + `CHANGELOG.md` обновить
 
 ---
