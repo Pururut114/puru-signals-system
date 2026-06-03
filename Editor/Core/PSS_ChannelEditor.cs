@@ -113,7 +113,7 @@ namespace PuruSignals.Editor
             if (_foundActions.Contains(action)) return;
 
             Undo.RecordObject(action, "PSS Link Action");
-            action.channel  = _channel;
+            action.channel  = (PSS_ChannelLocal)_channel;
             action.priority = _foundActions.Count;
             EditorUtility.SetDirty(action);
             UdonSharpEditorUtility.CopyProxyToUdon(action);

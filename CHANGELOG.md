@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3] — 2026-06-04
+
+### Fixed
+- `PSS_ChannelEditor` — `action.channel = _channel` implicit cast CS0266; added explicit `(PSS_ChannelLocal)` cast (editor-only, always valid: Global extends Local)
+
+---
+
 ## [0.3.2] — 2026-06-04
 
 ### Fixed
