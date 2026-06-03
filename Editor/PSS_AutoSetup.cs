@@ -8,8 +8,8 @@ using UdonSharp;
 
 namespace PuruSignals.Editor
 {
-    // Runs on every domain reload. Auto-manages PSS_PROTV_INSTALLED / PSS_LTCGI_INSTALLED
-    // scripting defines based on whether the corresponding packages are loaded, then silently
+    // Runs on every domain reload. Auto-manages PSS_LTCGI_INSTALLED
+    // scripting define based on whether LTCGI package is loaded, then silently
     // creates any missing UdonSharpProgramAsset files when defines are already stable.
     [InitializeOnLoad]
     public static class PSS_AutoSetup
@@ -39,8 +39,7 @@ namespace PuruSignals.Editor
                 raw.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
 
             bool changed = false;
-            changed |= SyncDefine(defines, "PSS_PROTV_INSTALLED", IsAssemblyLoaded("ArchiTech.ProTV.Runtime"));
-            changed |= SyncDefine(defines, "PSS_LTCGI_INSTALLED",  IsAssemblyLoaded("LTCGI"));
+            changed |= SyncDefine(defines, "PSS_LTCGI_INSTALLED", IsAssemblyLoaded("LTCGI"));
 
             if (!changed) return false;
 

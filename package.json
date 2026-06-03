@@ -1,13 +1,13 @@
 {
   "name": "com.pururut.pss",
   "displayName": "Puru Signals System",
-  "version": "0.1.26",
+  "version": "0.2.0",
   "author": {
     "name": "Pururut",
     "email": "opleskach@readdle.com"
   },
   "unity": "2019.4",
-  "description": "Event-driven framework for VRChat worlds. Trigger → Channel → Action pipeline with Standalone Utilities.",
+  "description": "Event-driven framework for VRChat worlds. Trigger → Channel → Action pipeline.",
   "license": "MIT",
   "vpmDependencies": {
     "com.vrchat.worlds": ">=3.1.0",

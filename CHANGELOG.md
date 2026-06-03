@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.0] — 2026-06-04
+
+### Breaking
+- Standalone Utilities и ProTV модули удалены из PSS. Они переехали в отдельный пакет **Puru World Utils** (`com.pururut.world-utils`). PSS остаётся чистым Trigger → Channel → Action фреймворком.
+- Удалены: `PSS_ZoneEnableWhileInside`, `PSS_FallZoneBlackoutTeleport`, `PSS_ZoneReparentSnap`, `PSS_ZoneHeadToggle`, `PSS_PositionPersistence`, `PSS_InteractTeleport`, `PSS_PickupPortal`, `PSS_FadeOnJoin`, `PSS_CameraLayerIsolation`, `PSS_CameraLayerIsolationZone`, `PSS_MaterialCycler`, `PSS_WebImageFrame`, `PSS_MultiSelectController`, `PSS_MultiSelectButton`, `PSS_AdminVisibility`, `PSS_AdminVisibilityFull`, `PSS_InstanceOwnerVisibility`, `PSS_MasterVisibility`, `PSS_ZoneAdminVisibility`, `PSS_ZoneAdminVisibilityFull`, `PSS_ProductToggle`, `PSS_ProductToggleFull`, `PSS_OpenWorldStore`, `PSS_OpenGroupStore`, `PSS_OpenListing`, `PSS_ProTVAccessGate`, `PSS_ProTVAmbientFade`.
+- Убрана scripting define `PSS_PROTV_INSTALLED` — PSS больше не детектирует ProTV.
+
+---
+
 ## [0.1.26] — 2026-06-01
 
 ### Fixed

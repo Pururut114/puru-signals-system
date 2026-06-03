@@ -41,53 +41,6 @@
 
 ---
 
-## Standalone Utilities
-
-Самодостаточные скрипты — не Trigger/Action, не требуют канала. Добавляются через `Tools > PSS > Spawn`.
-
-### Zones
-| Класс | Описание |
-|-------|----------|
-| `PSS_ZoneEnableWhileInside` | Включает/выключает объекты пока локальный игрок внутри trigger-зоны. Поддерживает invert-режим и стартовую проверку позиции |
-| `PSS_FallZoneBlackoutTeleport` | При входе в зону: fade to black (PPS v2) → телепорт → fade back. Защита от re-trigger во время анимации |
-| `PSS_ZoneReparentSnap` | При входе в зону reparent'ит targetRoot к enterMarker. Опциональный exitMarker для обратного snap при выходе |
-
-### Persistence
-| Класс | Описание |
-|-------|----------|
-| `PSS_PositionPersistence` | Сохраняет/восстанавливает позицию игрока между визитами через VRChat PlayerData. Авто-сохранение по интервалу или только по чекпоинтам |
-
-### Teleport
-| Класс | Описание |
-|-------|----------|
-| `PSS_InteractTeleport` | Teleport с fade по Interact. `triggerOnce`, опциональный PostProcessVolume |
-| `PSS_PickupPortal` | Pickup-пульт: нажал Use → fade → teleport → respawn пикапа в remoteRespawnPoint. `requireHeld`, `dropAfterUse` |
-
-### FX
-| Класс | Описание |
-|-------|----------|
-| `PSS_FadeOnJoin` | Fade PostProcessVolume weight 1→0 при старте мира. Hold → fade. `forceDarkFrames` защита от flash, `autoStart` или ручной `Begin()` |
-| `PSS_CameraLayerIsolation` | Глобально убирает выбранные слои из ScreenCamera.CullingMask. Remote players и nameplates — раздельные тогглы. Enable()/Disable() для внешнего управления. SDK 3.9+ |
-| `PSS_CameraLayerIsolationZone` | Зональный вариант: стрипает слои пока локальный игрок внутри trigger-зоны, восстанавливает при выходе или respawn. SDK 3.9+ |
-
-### Select
-| Класс | Описание |
-|-------|----------|
-| `PSS_MultiSelectController` | Synced radio-selector (Manual): ровно один из targets включён по индексу. -1 = все выключены. `SelectToggle`, `broadcastApplyForInstantFeedback`, опциональные `onSelectChannels` |
-| `PSS_MultiSelectButton` | Кнопка для PSS_MultiSelectController. Выбирает индекс или SelectNone. Поддерживает toggleMode |
-
-### Access
-| Класс | Описание |
-|-------|----------|
-| `PSS_AdminVisibility` | Включает объекты если локальный игрок в списке adminNames. Не-админы: scene defaults (не трогает) |
-| `PSS_AdminVisibilityFull` | Явный контроль для обеих сторон: adminObjects вкл/выкл по admin-статусу, nonAdminObjects — инверсно |
-| `PSS_InstanceOwnerVisibility` | Включает/выключает объекты для создателя инстанса. Только Invite/Friends/Friends+ инстансы |
-| `PSS_MasterVisibility` | Включает/выключает объекты для текущего master. Обновляется через OnPlayerLeft. Не использовать для security |
-| `PSS_ZoneAdminVisibility` | Как AdminVisibility, но проверка происходит один раз при входе локального игрока в trigger-зону |
-| `PSS_ZoneAdminVisibilityFull` | Как AdminVisibilityFull, но проверка происходит один раз при входе локального игрока в trigger-зону |
-
----
-
 ## Physics
 
 ### Actions
@@ -138,12 +91,3 @@ _не реализован_
 |-------|----------|
 | `PSS_LtcgiControl` | Включить / выключить / Toggle LTCGI — глобально или по списку экранов |
 
----
-
-## ProTV *(условная сборка — требует `PSS_PROTV_INSTALLED`)*
-
-### Standalone Utilities
-| Класс | Описание |
-|-------|----------|
-| `PSS_ProTVAccessGate` | Access gate на основе ProTV whitelist/TVManager. Перемещает панель, ограничивает скейл аватара, управляет объектами/коллайдерами/пикапами по уровню доступа |
-| `PSS_ProTVAmbientFade` | При старте воспроизведения сохраняет громкости источников и плавно глушит до 0. При остановке восстанавливает оригинальные громкости с fade |
