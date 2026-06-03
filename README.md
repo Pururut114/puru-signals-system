@@ -1,14 +1,17 @@
 # Puru Signals System
 
-Event-driven framework for VRChat worlds — **Trigger → Channel → Action** pipeline with Standalone Utilities.
+Event-driven framework for VRChat worlds — **Trigger → Channel → Action** pipeline.
 
 ## Install via VCC
 
-[Add to VCC](vcc://vpm/add-repo?url=https://Pururut114.github.io/puru-signals-system/index.json)
-
-Or manually: VCC → Settings → Packages → Add Repository:
+Open **VCC → Settings → Packages → Add Repository** and paste:
 ```
 https://Pururut114.github.io/puru-signals-system/index.json
+```
+
+Or use the one-click link (may not work on all systems):
+```
+vcc://vpm/add-repo?url=https://Pururut114.github.io/puru-signals-system/index.json
 ```
 
 ## Requirements
@@ -27,10 +30,6 @@ Full list: [`Docs/modules.md`](Docs/modules.md)
 - **Triggers:** OnInteract, OnEnterTrigger, OnExitTrigger, OnTimer, OnSpawn, OnEnable, OnDisable, CustomTrigger, ConditionalTrigger
 - **Actions:** SetActive, AnimationParam, CallMethod, ActiveCustomTrigger, SetDataSlot, SetStateSync
 - **Data:** DataSlot (local), StateSync (synced), ChannelLocal, ChannelGlobal
-
-### Standalone Utilities
-- `PSS_ZoneEnableWhileInside` — enables/disables objects while player is inside a trigger zone
-- `PSS_FallZoneBlackoutTeleport` — blackout + teleport on zone enter
 
 ### Player
 - `PSS_TeleportPlayer` — teleport local player to a target Transform
