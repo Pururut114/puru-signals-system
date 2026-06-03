@@ -8,10 +8,10 @@ using UdonSharpEditor;
 
 namespace PuruSignals.Editor
 {
-    [CustomEditor(typeof(PSS_ChannelLocal), true)]
+    [CustomEditor(typeof(PSS_ChannelBase), true)]
     public class PSS_ChannelEditor : UnityEditor.Editor
     {
-        private PSS_ChannelLocal _channel;
+        private PSS_ChannelBase _channel;
         private ReorderableList _actionsList;
         private List<PSS_ActionBase> _foundActions = new List<PSS_ActionBase>();
 
@@ -20,7 +20,7 @@ namespace PuruSignals.Editor
 
         private void OnEnable()
         {
-            _channel = (PSS_ChannelLocal)target;
+            _channel = (PSS_ChannelBase)target;
             RebuildActionsList();
         }
 

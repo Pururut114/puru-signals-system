@@ -46,7 +46,7 @@ namespace PuruSignals.Editor
             var moduleBase = (PSS_ModuleBase)target;
             bool isTrigger = moduleBase is PSS_TriggerBase;
             bool isAction  = moduleBase is PSS_ActionBase;
-            bool isChannel = moduleBase is PSS_ChannelLocal;
+            bool isChannel = moduleBase is PSS_ChannelBase;
 
             // ── Заголовок ────────────────────────────────────────────────────
             Color headerColor = isChannel ? ColorChannel : (isTrigger ? ColorTrigger : ColorAction);

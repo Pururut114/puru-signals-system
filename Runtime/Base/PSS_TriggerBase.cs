@@ -6,9 +6,7 @@ namespace PuruSignals
 {
     public abstract class PSS_TriggerBase : PSS_ModuleBase
     {
-        // Канал, который активирует этот триггер.
-        // Принимает PSS_ChannelLocal и PSS_ChannelGlobal (наследует Local).
-        public PSS_ChannelLocal channel;
+        public PSS_ChannelBase channel;
 
         protected void Fire()
         {

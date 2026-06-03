@@ -16,7 +16,13 @@ namespace PuruSignals.Editor
     {
         // ── GameObject меню ───────────────────────────────────────────────────
 
-        [MenuItem("GameObject/PSS/Add Channel (Local)", false, 10)]
+        [MenuItem("GameObject/PSS/Add Node", false, 9)]
+        private static void AddNode()
+        {
+            AddComponentToSelection<PSS_Node>("Node");
+        }
+
+        [MenuItem("GameObject/PSS/Add Channel (Local)", false, 11)]
         private static void AddChannelLocal()
         {
             AddComponentToSelection<PSS_ChannelLocal>("Channel Local");

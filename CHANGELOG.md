@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0] — 2026-06-04
+
+### Added
+- `PSS_Node` — unified entry point: one component on any object, configure sync mode + triggers + actions inline. T23-style UX.
+- `PSS_NodeEditor` — unified inspector with SyncMode toolbar, `+ Trigger` / `+ Action` dropdown buttons, Network warning with "Add to Scene" button, auto-wiring on component add.
+- `PSS_ChannelBase` — abstract base class for `PSS_ChannelLocal` and `PSS_ChannelGlobal`. All dispatch logic (delay, randomize, _Fire) moved here.
+
+### Changed
+- `PSS_ChannelLocal` now extends `PSS_ChannelBase` (was `PSS_ModuleBase`). All existing setups fully backward compatible.
+- `PSS_TriggerBase.channel` type: `PSS_ChannelLocal` → `PSS_ChannelBase`. Accepts both Local and Global in inspector.
+- `PSS_ActionBase.channel` type: same change.
+- `PSS_StateSync.channelOnTrue/False` types: same change.
+- `PSS_ChannelEditor` now targets `PSS_ChannelBase` (covers Local + Global).
+- `GameObject/PSS/Add Node` added to hierarchy menu.
+
+---
+
 ## [0.2.1] — 2026-06-04
 
 ### Fixed
