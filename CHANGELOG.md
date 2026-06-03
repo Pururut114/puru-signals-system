@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.1] — 2026-06-04
+
+### Fixed
+- Removed orphaned `com.unity.postprocessing` dependency (was pulled in by FX utilities, now in PWU)
+
+### Docs
+- README updated: removed ProTV/PostProcessing requirements, removed standalone utilities section, added link to Puru World Utils
+
+---
+
 ## [0.2.0] — 2026-06-04
 
 ### Breaking

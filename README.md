@@ -18,9 +18,7 @@ vcc://vpm/add-repo?url=https://Pururut114.github.io/puru-signals-system/index.js
 
 - VRChat Worlds SDK `>=3.1.0`
 - UdonSharp `>=1.1.8`
-- Unity Post Processing Stack v2 `>=3.2.2`
 - [LTCGI](https://github.com/PiMaker/ltcgi) _(optional — `PSS_LtcgiControl`. Auto-detected on install.)_
-- [ProTV](https://protv.dev) _(optional — `PSS_ProTVAccessGate`. Auto-detected on install.)_
 
 ## Modules
 
@@ -46,14 +44,14 @@ Full list: [`Docs/modules.md`](Docs/modules.md)
 ### LTCGI _(requires LTCGI, auto-enabled)_
 - `PSS_LtcgiControl` — toggle LTCGI globally or per screen
 
-### ProTV _(requires ProTV, auto-enabled)_
-- `PSS_ProTVAccessGate` — ProTV-based access gate: panel teleport, avatar scaling, object/collider/pickup gating
-
 ## Quick Setup
 
 `Tools > PSS > Quick Setup...` — Wizard for building Trigger → Channel → Action chains in a few clicks.
 
-Spawn standalone utilities: `Tools > PSS > Spawn > ...`
+## Standalone Utilities
+
+Drop-in UdonSharp utilities (zones, FX, teleport, access control, economy) are in a separate package:
+**[Puru World Utils](https://github.com/Pururut114/puru-world-utils)** — no PSS dependency required.
 
 ## Architecture
 

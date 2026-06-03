@@ -1,7 +1,7 @@
 {
   "name": "com.pururut.pss",
   "displayName": "Puru Signals System",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Pururut",
     "email": "opleskach@readdle.com"
@@ -13,7 +13,5 @@
     "com.vrchat.worlds": ">=3.1.0",
     "com.vrchat.udonsharp": ">=1.1.8"
   },
-  "dependencies": {
-    "com.unity.postprocessing": "3.2.2"
-  }
+  "dependencies": {}
 }
