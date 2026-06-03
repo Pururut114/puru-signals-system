@@ -20,7 +20,7 @@ namespace PuruSignals.Editor
             _node = (PSS_Node)target;
             if (_node == null) return;
 
-            var existing = _node.gameObject.GetComponent<PSS_ChannelBase>();
+            var existing = _node.gameObject.GetComponent<PSS_ChannelLocal>();
 
             if (existing == null)
             {
@@ -87,20 +87,20 @@ namespace PuruSignals.Editor
         {
             var go = _node.gameObject;
 
-            var oldChannel = go.GetComponent<PSS_ChannelBase>();
+            var oldChannel = go.GetComponent<PSS_ChannelLocal>();
             float savedDelay = 0f;
             bool savedRandomize = false;
             PSS_ActionBase[] savedActions = null;
 
             if (oldChannel != null)
             {
-                savedDelay    = oldChannel.delay;
+                savedDelay     = oldChannel.delay;
                 savedRandomize = oldChannel.randomize;
-                savedActions  = oldChannel._actions;
+                savedActions   = oldChannel._actions;
                 Undo.DestroyObjectImmediate(oldChannel);
             }
 
-            PSS_ChannelBase newChannel;
+            PSS_ChannelLocal newChannel;
             if (newMode == NodeSyncMode.Global)
             {
                 var global = Undo.AddComponent<PSS_ChannelGlobal>(go);
@@ -324,11 +324,11 @@ namespace PuruSignals.Editor
         {
             if (_node._channel != null) return;
 
-            var existing = _node.gameObject.GetComponent<PSS_ChannelBase>();
+            var existing = _node.gameObject.GetComponent<PSS_ChannelLocal>();
             if (existing == null)
             {
                 existing = _node.syncMode == NodeSyncMode.Global
-                    ? (PSS_ChannelBase)Undo.AddComponent<PSS_ChannelGlobal>(_node.gameObject)
+                    ? (PSS_ChannelLocal)Undo.AddComponent<PSS_ChannelGlobal>(_node.gameObject)
                     : Undo.AddComponent<PSS_ChannelLocal>(_node.gameObject);
             }
 
@@ -338,7 +338,7 @@ namespace PuruSignals.Editor
             UdonSharpEditorUtility.CopyProxyToUdon(_node);
         }
 
-        private void RescanActions(PSS_ChannelBase channel)
+        private void RescanActions(PSS_ChannelLocal channel)
         {
             if (channel == null) return;
 

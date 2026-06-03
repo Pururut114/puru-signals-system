@@ -13,7 +13,7 @@ namespace PuruSignals
 
         // Авто-заполняется PSS_NodeEditor при изменении в инспекторе.
         // Ссылка на Channel (Local или Global) на этом же объекте.
-        [HideInInspector] public PSS_ChannelBase _channel;
+        [HideInInspector] public PSS_ChannelLocal _channel;
 
         private void Start()
         {

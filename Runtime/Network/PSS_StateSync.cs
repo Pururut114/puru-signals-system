@@ -19,8 +19,8 @@ namespace PuruSignals
         public StateSyncType valueType = StateSyncType.Bool;
 
         [Header("Bool — каналы применения состояния")]
-        public PSS_ChannelBase channelOnTrue;
-        public PSS_ChannelBase channelOnFalse;
+        public PSS_ChannelLocal channelOnTrue;
+        public PSS_ChannelLocal channelOnFalse;
 
         [Header("Int / Float — целевой DataSlot")]
         public PSS_DataSlot targetSlot;

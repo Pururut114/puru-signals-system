@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1] — 2026-06-04
+
+### Fixed
+- `PSS_ChannelLocal` — missing `using UnityEngine;` after refactor (CS0246)
+- `PSS_TriggerBase`, `PSS_ActionBase`, `PSS_StateSync`, `PSS_Node` — reverted `channel` field types from abstract `PSS_ChannelBase` to concrete `PSS_ChannelLocal`. UdonSharp cannot serialize abstract types. Works identically: `PSS_ChannelGlobal` extends `PSS_ChannelLocal`, so drag-drop and virtual dispatch both work correctly.
+
+---
+
 ## [0.3.0] — 2026-06-04
 
 ### Added

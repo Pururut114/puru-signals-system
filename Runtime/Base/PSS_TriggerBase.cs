@@ -6,7 +6,7 @@ namespace PuruSignals
 {
     public abstract class PSS_TriggerBase : PSS_ModuleBase
     {
-        public PSS_ChannelBase channel;
+        public PSS_ChannelLocal channel;
 
         protected void Fire()
         {
