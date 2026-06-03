@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2] — 2026-06-04
+
+### Fixed
+- `PSS_Node` — `GetComponent<PSS_ChannelBase>()` caused CS0266; changed to `GetComponent<PSS_ChannelLocal>()` (Global extends Local, so both are found correctly)
+- Removed orphan `.meta` files for non-existent folders: `Modules/Audio`, `MIDI`, `Pool`, `UI`, `Video`, and `PLAN.md`, `_validate_release.py`
+
+---
+
 ## [0.3.1] — 2026-06-04
 
 ### Fixed

@@ -18,7 +18,7 @@ namespace PuruSignals
         private void Start()
         {
             if (_channel == null)
-                _channel = GetComponent<PSS_ChannelBase>();
+                _channel = GetComponent<PSS_ChannelLocal>();
 
             if (_channel == null) return;
 
