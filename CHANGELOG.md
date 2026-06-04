@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.4] — 2026-06-04
+
+### Fixed
+- `PSS_NodeEditor` — SyncMode toolbar теперь читает реальный тип Channel (GetComponent), не `_node.syncMode` — исправляет расхождение после domain reload/undo
+- `PSS_NodeEditor` — добавлен `SyncFromComponents()` в начале каждого OnInspectorGUI: синхронизирует `_channel` и `syncMode` с реальными компонентами
+- `PSS_NodeEditor` — перепривязка Triggers/Actions после SwitchChannel перенесена в `EditorApplication.delayCall`: исправляет "Missing (PSS_Channel Local)" после переключения
+- `PSS_NodeEditor` — `bufferForLateJoin` теперь отображается всегда при Global режиме, не только когда PSS_Network уже в сцене
+
+---
+
 ## [0.3.3] — 2026-06-04
 
 ### Fixed

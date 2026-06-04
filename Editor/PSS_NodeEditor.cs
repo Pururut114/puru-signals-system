@@ -20,23 +20,12 @@ namespace PuruSignals.Editor
             _node = (PSS_Node)target;
             if (_node == null) return;
 
-            var existing = _node.gameObject.GetComponent<PSS_ChannelLocal>();
-
-            if (existing == null)
+            EditorApplication.delayCall += () =>
             {
-                EditorApplication.delayCall += () =>
-                {
-                    if (_node == null) return;
-                    EnsureChannel();
-                };
-            }
-            else if (_node._channel == null)
-            {
-                Undo.RecordObject(_node, "PSS Node Link Channel");
-                _node._channel = existing;
-                EditorUtility.SetDirty(_node);
-                UdonSharpEditorUtility.CopyProxyToUdon(_node);
-            }
+                if (_node == null) return;
+                EnsureChannel();
+                SyncFromComponents();
+            };
         }
 
         public override void OnInspectorGUI()
@@ -45,6 +34,9 @@ namespace PuruSignals.Editor
 
             serializedObject.Update();
             UdonSharpGUI.DrawCompileErrorTextArea();
+
+            // Всегда синхронизируем _channel и syncMode с реальными компонентами
+            SyncFromComponents();
 
             DrawHeader("NODE  /  PSS_Node", ColorNode);
             EditorGUILayout.Space(6);
@@ -65,11 +57,33 @@ namespace PuruSignals.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
+        // ── State sync ────────────────────────────────────────────────────────
+
+        // Синхронизирует _channel и syncMode с реальным компонентом на объекте.
+        // Вызывается каждый OnInspectorGUI чтобы исправить расхождения после
+        // DestroyObjectImmediate / domain reload / undo.
+        private void SyncFromComponents()
+        {
+            var ch = _node.gameObject.GetComponent<PSS_ChannelLocal>();
+            if (ch == null) return;
+
+            NodeSyncMode realMode = (ch is PSS_ChannelGlobal) ? NodeSyncMode.Global : NodeSyncMode.Local;
+
+            if (_node._channel == ch && _node.syncMode == realMode) return;
+
+            _node._channel = ch;
+            _node.syncMode = realMode;
+            EditorUtility.SetDirty(_node);
+            UdonSharpEditorUtility.CopyProxyToUdon(_node);
+        }
+
         // ── SyncMode ──────────────────────────────────────────────────────────
 
         private void DrawSyncMode()
         {
-            int current = (int)_node.syncMode;
+            // Читаем из реального компонента, не из _node.syncMode — надёжнее
+            var ch = _node.gameObject.GetComponent<PSS_ChannelLocal>();
+            int current = (ch is PSS_ChannelGlobal) ? 1 : 0;
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Sync Mode", GUILayout.Width(84));
@@ -88,8 +102,8 @@ namespace PuruSignals.Editor
             var go = _node.gameObject;
 
             var oldChannel = go.GetComponent<PSS_ChannelLocal>();
-            float savedDelay = 0f;
-            bool savedRandomize = false;
+            float savedDelay      = 0f;
+            bool  savedRandomize  = false;
             PSS_ActionBase[] savedActions = null;
 
             if (oldChannel != null)
@@ -131,33 +145,46 @@ namespace PuruSignals.Editor
             EditorUtility.SetDirty(_node);
             UdonSharpEditorUtility.CopyProxyToUdon(_node);
 
-            var triggers = go.GetComponents<PSS_TriggerBase>();
-            foreach (var t in triggers)
+            // Перепривязка через delayCall — DestroyObjectImmediate + AddComponent
+            // требуют следующего frame чтобы UdonSharp proxy корректно инициализировался
+            var capturedChannel = newChannel;
+            var capturedActions = savedActions;
+            EditorApplication.delayCall += () =>
             {
-                if (t == null) continue;
-                Undo.RecordObject(t, "PSS Node Rewire");
-                t.channel = newChannel;
-                EditorUtility.SetDirty(t);
-                UdonSharpEditorUtility.CopyProxyToUdon(t);
-            }
+                if (_node == null || capturedChannel == null) return;
 
-            if (savedActions != null)
-            {
-                foreach (var a in savedActions)
+                foreach (var t in go.GetComponents<PSS_TriggerBase>())
                 {
-                    if (a == null) continue;
-                    Undo.RecordObject(a, "PSS Node Rewire");
-                    a.channel = newChannel;
-                    EditorUtility.SetDirty(a);
-                    UdonSharpEditorUtility.CopyProxyToUdon(a);
+                    if (t == null) continue;
+                    Undo.RecordObject(t, "PSS Node Rewire");
+                    t.channel = capturedChannel;
+                    EditorUtility.SetDirty(t);
+                    UdonSharpEditorUtility.CopyProxyToUdon(t);
                 }
-            }
+
+                if (capturedActions != null)
+                {
+                    foreach (var a in capturedActions)
+                    {
+                        if (a == null) continue;
+                        Undo.RecordObject(a, "PSS Node Rewire");
+                        a.channel = capturedChannel;
+                        EditorUtility.SetDirty(a);
+                        UdonSharpEditorUtility.CopyProxyToUdon(a);
+                    }
+                }
+
+                RescanActions(capturedChannel);
+            };
         }
 
         // ── Network Section ───────────────────────────────────────────────────
 
         private void DrawNetworkSection()
         {
+            var globalChannel = _node.gameObject.GetComponent<PSS_ChannelGlobal>();
+            if (globalChannel == null) return;
+
             if (FindObjectOfType<PSS_Network>() == null)
             {
                 EditorGUILayout.HelpBox(
@@ -170,20 +197,14 @@ namespace PuruSignals.Editor
                     Undo.RegisterCreatedObjectUndo(netGo, "Add PSS_Network");
                     var net = Undo.AddComponent<PSS_Network>(netGo);
 
-                    var global = _node.gameObject.GetComponent<PSS_ChannelGlobal>();
-                    if (global != null)
-                    {
-                        Undo.RecordObject(global, "PSS Auto-Link Network");
-                        global.network = net;
-                        EditorUtility.SetDirty(global);
-                        UdonSharpEditorUtility.CopyProxyToUdon(global);
-                    }
+                    Undo.RecordObject(globalChannel, "PSS Auto-Link Network");
+                    globalChannel.network = net;
+                    EditorUtility.SetDirty(globalChannel);
+                    UdonSharpEditorUtility.CopyProxyToUdon(globalChannel);
                 }
             }
 
-            var globalChannel = _node.gameObject.GetComponent<PSS_ChannelGlobal>();
-            if (globalChannel == null) return;
-
+            // bufferForLateJoin и network показываем всегда (не только когда сеть найдена)
             var so = new SerializedObject(globalChannel);
             so.Update();
             EditorGUI.BeginChangeCheck();
@@ -230,7 +251,8 @@ namespace PuruSignals.Editor
 
         private void DrawActionsSection()
         {
-            var actions = _node._channel?._actions;
+            var channel = _node._channel;
+            var actions = channel?._actions;
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
@@ -247,8 +269,8 @@ namespace PuruSignals.Editor
                 foreach (var a in actions)
                 {
                     if (a == null) continue;
-                    var capturedAction = a;
-                    var capturedChannel = _node._channel;
+                    var capturedAction  = a;
+                    var capturedChannel = channel;
                     DrawModuleRow(a.GetType().Name.Replace("PSS_", ""), () =>
                     {
                         EditorApplication.delayCall += () =>
