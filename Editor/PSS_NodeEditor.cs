@@ -43,7 +43,7 @@ namespace PuruSignals.Editor
 
             DrawSyncMode();
 
-            if (_node.syncMode == NodeSyncMode.Global)
+            if (_node.syncMode == NodeSyncMode.Global || _node.syncMode == NodeSyncMode.GlobalStateful)
             {
                 EditorGUILayout.Space(4);
                 DrawNetworkSection();
@@ -67,7 +67,11 @@ namespace PuruSignals.Editor
             var ch = _node.gameObject.GetComponent<PSS_ChannelLocal>();
             if (ch == null) return;
 
-            NodeSyncMode realMode = (ch is PSS_ChannelGlobal) ? NodeSyncMode.Global : NodeSyncMode.Local;
+            NodeSyncMode realMode;
+            if (ch is PSS_ChannelGlobal global)
+                realMode = global.bufferMode > 0 ? NodeSyncMode.GlobalStateful : NodeSyncMode.Global;
+            else
+                realMode = NodeSyncMode.Local;
 
             if (_node._channel == ch && _node.syncMode == realMode) return;
 
@@ -81,14 +85,17 @@ namespace PuruSignals.Editor
 
         private void DrawSyncMode()
         {
-            // Читаем из реального компонента, не из _node.syncMode — надёжнее
             var ch = _node.gameObject.GetComponent<PSS_ChannelLocal>();
-            int current = (ch is PSS_ChannelGlobal) ? 1 : 0;
+            int current;
+            if (ch is PSS_ChannelGlobal g)
+                current = g.bufferMode > 0 ? 2 : 1;
+            else
+                current = 0;
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Sync Mode", GUILayout.Width(84));
             EditorGUI.BeginChangeCheck();
-            int newVal = GUILayout.Toolbar(current, new[] { "Local", "Global" });
+            int newVal = GUILayout.Toolbar(current, new[] { "Local", "Global", "Global + State" });
             if (EditorGUI.EndChangeCheck() && newVal != current)
             {
                 serializedObject.ApplyModifiedProperties();
@@ -115,7 +122,7 @@ namespace PuruSignals.Editor
             }
 
             PSS_ChannelLocal newChannel;
-            if (newMode == NodeSyncMode.Global)
+            if (newMode == NodeSyncMode.Global || newMode == NodeSyncMode.GlobalStateful)
             {
                 var global = Undo.AddComponent<PSS_ChannelGlobal>(go);
                 var network = FindObjectOfType<PSS_Network>();
@@ -123,8 +130,27 @@ namespace PuruSignals.Editor
                 {
                     Undo.RecordObject(global, "PSS Auto-Link Network");
                     global.network = network;
-                    EditorUtility.SetDirty(global);
                 }
+
+                if (newMode == NodeSyncMode.GlobalStateful)
+                {
+                    var buf = FindObjectOfType<PSS_StateBuffer>();
+                    if (buf == null)
+                    {
+                        var bufGo = new GameObject("PSS_StateBuffer");
+                        Undo.RegisterCreatedObjectUndo(bufGo, "Add PSS_StateBuffer");
+                        buf = Undo.AddComponent<PSS_StateBuffer>(bufGo);
+                    }
+                    Undo.RecordObject(global, "PSS Auto-Link StateBuffer");
+                    global.stateBuffer = buf;
+                    global.bufferMode  = 2; // Everytime
+                }
+                else
+                {
+                    global.bufferMode = 0;
+                }
+
+                EditorUtility.SetDirty(global);
                 newChannel = global;
             }
             else
@@ -185,18 +211,18 @@ namespace PuruSignals.Editor
             var globalChannel = _node.gameObject.GetComponent<PSS_ChannelGlobal>();
             if (globalChannel == null) return;
 
+            var so = new SerializedObject(globalChannel);
+            so.Update();
+
+            // PSS_Network
             if (FindObjectOfType<PSS_Network>() == null)
             {
-                EditorGUILayout.HelpBox(
-                    "PSS_Network not found in scene — required for Global sync.",
-                    MessageType.Warning);
-
+                EditorGUILayout.HelpBox("PSS_Network not found in scene.", MessageType.Warning);
                 if (GUILayout.Button("Add PSS_Network to Scene"))
                 {
                     var netGo = new GameObject("PSS_Network");
                     Undo.RegisterCreatedObjectUndo(netGo, "Add PSS_Network");
                     var net = Undo.AddComponent<PSS_Network>(netGo);
-
                     Undo.RecordObject(globalChannel, "PSS Auto-Link Network");
                     globalChannel.network = net;
                     EditorUtility.SetDirty(globalChannel);
@@ -204,12 +230,30 @@ namespace PuruSignals.Editor
                 }
             }
 
-            // bufferForLateJoin и network показываем всегда (не только когда сеть найдена)
-            var so = new SerializedObject(globalChannel);
-            so.Update();
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(so.FindProperty("network"),           new GUIContent("Network"));
-            EditorGUILayout.PropertyField(so.FindProperty("bufferForLateJoin"), new GUIContent("Buffer for Late Join"));
+            EditorGUILayout.PropertyField(so.FindProperty("network"), new GUIContent("Network"));
+
+            // PSS_StateBuffer (только для GlobalStateful)
+            if (_node.syncMode == NodeSyncMode.GlobalStateful)
+            {
+                if (FindObjectOfType<PSS_StateBuffer>() == null)
+                {
+                    EditorGUILayout.HelpBox("PSS_StateBuffer not found in scene.", MessageType.Warning);
+                    if (GUILayout.Button("Add PSS_StateBuffer to Scene"))
+                    {
+                        var bufGo = new GameObject("PSS_StateBuffer");
+                        Undo.RegisterCreatedObjectUndo(bufGo, "Add PSS_StateBuffer");
+                        var buf = Undo.AddComponent<PSS_StateBuffer>(bufGo);
+                        Undo.RecordObject(globalChannel, "PSS Auto-Link StateBuffer");
+                        globalChannel.stateBuffer = buf;
+                        globalChannel.bufferMode  = 2;
+                        EditorUtility.SetDirty(globalChannel);
+                        UdonSharpEditorUtility.CopyProxyToUdon(globalChannel);
+                    }
+                }
+                EditorGUILayout.PropertyField(so.FindProperty("stateBuffer"), new GUIContent("State Buffer"));
+            }
+
             if (so.ApplyModifiedProperties() || EditorGUI.EndChangeCheck())
                 UdonSharpEditorUtility.CopyProxyToUdon(globalChannel);
         }

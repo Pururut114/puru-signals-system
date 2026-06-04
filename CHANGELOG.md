@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0] — 2026-06-04
+
+### Added
+- **`PSS_StateBuffer`** — новый компонент (аналог T23_CommonBuffer). Хранит `[UdonSynced] int[] _history` — порядок срабатываний Global каналов. При джоине нового игрока воспроизводит историю: Actions re-execute, объекты оказываются в правильном состоянии без synced полей в самих Actions.
+- **3-й SyncMode: `Global + State`** — на PSS_Node toolbar. Авто-создаёт PSS_StateBuffer в сцене, авто-линкует канал. Идеальный UX: Node + Trigger + Action — всё.
+- `PSS_ChannelGlobal` — поля `stateBuffer` и `bufferMode` (0=None, 1=BufferOne, 2=Everytime), метод `_FireLocal()` для replay.
+
+### Removed
+- `PSS_ChannelGlobal.bufferForLateJoin` — заменён на `stateBuffer` + `bufferMode`.
+
+---
+
 ## [0.3.9] — 2026-06-04
 
 ### Changed

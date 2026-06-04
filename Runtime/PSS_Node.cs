@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PuruSignals
 {
-    public enum NodeSyncMode { Local, Global }
+    public enum NodeSyncMode { Local, Global, GlobalStateful }
 
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     [AddComponentMenu("PSS/PSS_Node [Node]")]
