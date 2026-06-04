@@ -18,7 +18,11 @@ namespace PuruSignals
         [Header("Type")]
         public StateSyncType valueType = StateSyncType.Bool;
 
-        [Header("Bool — каналы применения состояния")]
+        [Header("Bool — прямые цели (SetActive по состоянию)")]
+        [Tooltip("state=true → SetActive(true), state=false → SetActive(false)")]
+        public GameObject[] boolTargets;
+
+        [Header("Bool — каналы применения состояния (опционально)")]
         public PSS_ChannelLocal channelOnTrue;
         public PSS_ChannelLocal channelOnFalse;
 
@@ -84,6 +88,8 @@ namespace PuruSignals
             switch (valueType)
             {
                 case StateSyncType.Bool:
+                    foreach (var t in boolTargets)
+                        if (t != null) t.SetActive(_syncBool);
                     if (_syncBool) { if (channelOnTrue  != null) channelOnTrue.Trigger();  }
                     else           { if (channelOnFalse != null) channelOnFalse.Trigger(); }
                     break;

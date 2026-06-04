@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.9] — 2026-06-04
+
+### Changed
+- `PSS_StateSync` — добавлено поле `boolTargets: GameObject[]`: при смене Bool состояния напрямую применяет `SetActive` к целям без sub-каналов. Упрощает сетап toggle-кнопки до 2 объектов: Node(Global)+SetStateSync + StateSync с boolTargets.
+
+---
+
 ## [0.3.8] — 2026-06-04
 
 ### Fixed
