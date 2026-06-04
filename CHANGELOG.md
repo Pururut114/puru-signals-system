@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.7] — 2026-06-04
+
+### Fixed
+- `PSS_HierarchyMenu` — "Add Node" больше не молчит при отсутствии выделения: создаёт новый GameObject "PSS Node" и добавляет PSS_Node на него.
+
+---
+
 ## [0.3.6] — 2026-06-04
 
 ### Added

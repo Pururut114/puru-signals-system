@@ -19,6 +19,12 @@ namespace PuruSignals.Editor
         [MenuItem("GameObject/PSS/Add Node", false, 9)]
         private static void AddNode()
         {
+            if (Selection.activeGameObject == null)
+            {
+                var go = new GameObject("PSS Node");
+                Undo.RegisterCreatedObjectUndo(go, "Create PSS Node");
+                Selection.activeGameObject = go;
+            }
             AddComponentToSelection<PSS_Node>("Node");
         }
 

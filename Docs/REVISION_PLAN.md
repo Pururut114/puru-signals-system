@@ -214,7 +214,14 @@ Trigger() → _Dispatch() → SendCustomEventDelayedSeconds("_Fire", delay) → 
 `PSS_ChannelBase._Dispatch()` переведён из `private` в `protected`.
 
 ### Fix C — Verify virtual dispatch
-Тест в Client Sim: PSS_ChannelGlobal на объекте, `channel` typed Local, проверить что Global.Trigger() вызывается (добавить Debug.Log в оба).
+Тест в Client Sim: PSS_ChannelGlobal на объекте, `channel` typed Local, проверить что Global.Trigger() вызывается.
+
+**Статус теста (2026-06-04):**
+- Сцена с PSS_Node(Global) + OnInteract + SetActive собрана в Client Sim
+- Toggle сработал → `_actions[]` заполнен, Fix A подтверждён
+- Debug.Log не появились — причина неясна: возможно UdonSharp не перекомпилировал после ручных правок в Packages/
+- **Следующий шаг:** `Tools → UdonSharp → Force Compile All UdonSharp Programs` → повторить тест → проверить Console с включённым Log фильтром
+- Для проверки сетевого dispatch нужен второй Client Sim инстанс (Local Test)
 
 ### Fix D — PSS_OnEnable: `skipFirst=true` по умолчанию ✅ v0.3.6
 `skipFirst = true` — не стрелять при старте сцены (более интуитивно).
