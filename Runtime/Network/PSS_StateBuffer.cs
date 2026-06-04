@@ -22,6 +22,10 @@ namespace PuruSignals
         [UdonSynced] private int[] _history      = new int[MaxHistory];
         [UdonSynced] private int   _historyCount = 0;
 
+        // Сколько событий этот клиент уже применил через real-time путь (PSS_Network).
+        // OnDeserialization воспроизводит только события начиная с этого индекса.
+        private int _appliedUpTo = 0;
+
         // ── Registration ──────────────────────────────────────────────────────
 
         public int RegisterChannel(PSS_ChannelGlobal channel)
@@ -45,6 +49,7 @@ namespace PuruSignals
                     for (int j = i; j < _historyCount - 1; j++)
                         _history[j] = _history[j + 1];
                     _historyCount--;
+                    if (_appliedUpTo > i) _appliedUpTo--;
                     break;
                 }
             }
@@ -53,7 +58,15 @@ namespace PuruSignals
                 _history[_historyCount++] = channelId;
 
             Networking.SetOwner(Networking.LocalPlayer, gameObject);
-            RequestSerialization();
+            // RequestSerialization НЕ вызывается здесь — только при OnPlayerJoined.
+            // Это предотвращает полный replay на уже синхронизированных клиентах.
+        }
+
+        // Вызывается PSS_ChannelGlobal._ReceiveNetworkFire() на каждом клиенте
+        // при получении real-time события через PSS_Network.
+        public void NotifyApplied()
+        {
+            _appliedUpTo++;
         }
 
         // ── Late Join ─────────────────────────────────────────────────────────
@@ -66,12 +79,14 @@ namespace PuruSignals
 
         public override void OnDeserialization()
         {
-            for (int i = 0; i < _historyCount; i++)
+            // Воспроизводим только события которые этот клиент ещё не видел.
+            for (int i = _appliedUpTo; i < _historyCount; i++)
             {
                 int id = _history[i];
                 if (id >= 0 && id < _channelCount && _channels[id] != null)
                     _channels[id]._FireLocal();
             }
+            _appliedUpTo = _historyCount;
         }
     }
 }

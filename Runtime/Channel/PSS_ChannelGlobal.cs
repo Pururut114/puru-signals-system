@@ -79,10 +79,10 @@ namespace PuruSignals
         // Вызывается PSS_Network при получении события от сети
         public void _ReceiveNetworkFire(int seed)
         {
-            // Используем seed для воспроизводимого random у всех клиентов
+            if (stateBuffer != null && bufferMode > 0)
+                stateBuffer.NotifyApplied();
             Random.InitState(seed);
             _Fire();
-            // Сброс random state (не нарушаем другие системы)
             Random.InitState((int)(Time.time * 10000));
         }
     }

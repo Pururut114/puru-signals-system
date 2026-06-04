@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1] — 2026-06-04
+
+### Fixed
+- `PSS_StateBuffer` — Toggle срабатывал только каждый второй раз для существующих клиентов. `RecordFire` вызывал `RequestSerialization()` на каждое событие — это рассылало полный replay на всех, двойное срабатывание. Теперь `RequestSerialization` только при `OnPlayerJoined`. Каждый клиент отслеживает `_appliedUpTo` — `OnDeserialization` воспроизводит только новые события.
+- `PSS_ChannelGlobal._ReceiveNetworkFire` — вызывает `stateBuffer.NotifyApplied()` чтобы клиент учитывал real-time событие в счётчике.
+
+---
+
 ## [0.4.0] — 2026-06-04
 
 ### Added
