@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.6] — 2026-06-04
+
+### Added
+- `Editor/PSS_BuildValidator` — `IProcessSceneWithReport` хук: перед каждым билдом сканирует сцену и гарантирует что `_actions[]` на всех `PSS_ChannelLocal` заполнен корректно. Исправляет root cause большинства функциональных проблем (Actions не срабатывали в VRChat).
+
+### Changed
+- `PSS_OnEnable` — `skipFirst` теперь `true` по умолчанию: OnEnable не стреляет при старте сцены, только при явном повторном Enable. Изменение breaking для существующих сетапов — проверить настройку вручную.
+- `PSS_ChannelBase` — `_Dispatch()` переведён из `private` в `protected`.
+
+---
+
 ## [0.3.5] — 2026-06-04
 
 ### Fixed

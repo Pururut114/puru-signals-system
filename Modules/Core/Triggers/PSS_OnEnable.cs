@@ -9,7 +9,7 @@ namespace PuruSignals
     public class PSS_OnEnable : PSS_TriggerBase
     {
         [PSS_Field("Skip First Enable", tooltip: "Не срабатывать при первом включении (при старте сцены)")]
-        public bool skipFirst = false;
+        public bool skipFirst = true;
 
         private bool _firstDone = false;
 

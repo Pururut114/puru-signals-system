@@ -29,7 +29,7 @@ namespace PuruSignals
 
         // ── Internal ──────────────────────────────────────────────────────────
 
-        private void _Dispatch()
+        protected void _Dispatch()
         {
             if (delay > 0f)
                 SendCustomEventDelayedSeconds(nameof(_Fire), delay);
