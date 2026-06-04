@@ -327,7 +327,7 @@ namespace PuruSignals.Editor
             var trigger = (PSS_TriggerBase)Undo.AddComponent(_node.gameObject, type);
             if (trigger == null) return;
 
-            // delayCall: UdonSharp OnEnable вызывает CopyUdonToProxy (обнуляет поля),
+            // delayCall #1: UdonSharp OnEnable вызывает CopyUdonToProxy (обнуляет поля),
             // поэтому привязываем channel только в следующем frame.
             EditorApplication.delayCall += () =>
             {
@@ -335,8 +335,13 @@ namespace PuruSignals.Editor
                 Undo.RecordObject(trigger, "PSS Node Add Trigger");
                 trigger.channel = channel;
                 EditorUtility.SetDirty(trigger);
-                UdonSharpEditorUtility.CopyProxyToUdon(trigger);
-                Repaint();
+                // delayCall #2: ждём регистрации UdonBehaviour heap UdonSharp'ом
+                EditorApplication.delayCall += () =>
+                {
+                    if (trigger == null) return;
+                    UdonSharpEditorUtility.CopyProxyToUdon(trigger);
+                    Repaint();
+                };
             };
         }
 
@@ -349,7 +354,7 @@ namespace PuruSignals.Editor
             var action = (PSS_ActionBase)Undo.AddComponent(_node.gameObject, type);
             if (action == null) return;
 
-            // delayCall по той же причине — ждём CopyUdonToProxy после OnEnable
+            // delayCall #1: ждём CopyUdonToProxy после OnEnable
             EditorApplication.delayCall += () =>
             {
                 if (action == null || channel == null) return;
@@ -357,9 +362,14 @@ namespace PuruSignals.Editor
                 action.channel  = channel;
                 action.priority = channel._actions?.Length ?? 0;
                 EditorUtility.SetDirty(action);
-                UdonSharpEditorUtility.CopyProxyToUdon(action);
-                RescanActions(channel);
-                Repaint();
+                // delayCall #2: ждём регистрации UdonBehaviour heap UdonSharp'ом
+                EditorApplication.delayCall += () =>
+                {
+                    if (action == null || channel == null) return;
+                    UdonSharpEditorUtility.CopyProxyToUdon(action);
+                    RescanActions(channel);
+                    Repaint();
+                };
             };
         }
 

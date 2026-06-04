@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.8] — 2026-06-04
+
+### Fixed
+- `PSS_NodeEditor` — `AddTrigger` / `AddAction`: добавлен второй `delayCall` перед `CopyProxyToUdon`. UdonSharp регистрирует heap data для нового компонента асинхронно — один frame оказывался недостаточно, `GetBackingUdonBehaviour` возвращал null → `ArgumentNullException` в Dictionary lookup.
+
+---
+
 ## [0.3.7] — 2026-06-04
 
 ### Fixed
