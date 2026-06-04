@@ -1,5 +1,20 @@
 # PSS — Оперативные заметки
 
+> ## ЗАМОРОЖЕН — SUPERSEDED BY PURU T23 + PWU
+>
+> **Дата заморозки:** 2026-06-04  
+> **Статус:** read-only архив, новых релизов не будет
+>
+> **Чем заменён:**
+> - Trigger/Action логика миров → **[Puru T23](../Puru_T23/)** (`com.pururut.t23`)
+> - Standalone утилиты (Zones, FX, Teleport и др.) → **[Puru World Utils](../Puru_World_Utils/)** (`com.pururut.pwu`)
+>
+> **Почему:** PSS стал слишком сложным в поддержке — собственная архитектура каналов, wizard, AutoSetup, assembly definitions, conditional программные ассеты. T23 — проверенная battle-tested база (Trigger2to3 by Hoke), PWU — чистые standalone утилиты без лишних зависимостей.
+>
+> **Что можно взять из PSS для справки:** паттерны интеграций (`Modules/LTCGI/`, `Modules/ProTV/`), PSS_AutoSetup логика detect+define.
+>
+> Остальное ниже — историческая документация.
+
 ## GitHub
 
 - **Репо:** https://github.com/Pururut114/puru-signals-system
