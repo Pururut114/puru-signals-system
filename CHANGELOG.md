@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.5] — 2026-06-04
+
+### Fixed
+- `PSS_NodeEditor` — `AddTrigger` / `AddAction` перенесены в `EditorApplication.delayCall`: UdonSharp `OnEnable` вызывает `CopyUdonToProxy` после `Undo.AddComponent`, обнуляя поля — теперь привязка происходит в следующем frame
+- `PSS_NodeEditor` — `DrawActionsSection` читает Channel из `GetComponent` (не из `_node._channel` proxy) — надёжнее после delayCall операций
+- `PSS_NodeEditor` — добавлена кнопка `↺` (Rescan) в секции Actions для ручной синхронизации
+
+---
+
 ## [0.3.4] — 2026-06-04
 
 ### Fixed

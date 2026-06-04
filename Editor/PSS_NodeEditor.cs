@@ -251,13 +251,18 @@ namespace PuruSignals.Editor
 
         private void DrawActionsSection()
         {
-            var channel = _node._channel;
+            // Читаем из живого компонента, не из proxy — надёжнее после delayCall операций
+            var channel = _node.gameObject.GetComponent<PSS_ChannelLocal>();
             var actions = channel?._actions;
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Actions", EditorStyles.boldLabel);
+            if (GUILayout.Button("↺", GUILayout.Width(24)))
+            {
+                if (channel != null) RescanActions(channel);
+            }
             if (GUILayout.Button("+ Action", GUILayout.Width(80)))
                 ShowAddMenu(typeof(PSS_ActionBase), AddAction);
             EditorGUILayout.EndHorizontal();
@@ -316,28 +321,46 @@ namespace PuruSignals.Editor
         private void AddTrigger(Type type)
         {
             EnsureChannel();
-            var trigger = (PSS_TriggerBase)Undo.AddComponent(_node.gameObject, type);
-            if (trigger == null || _node._channel == null) return;
+            var channel = _node._channel;
+            if (channel == null) return;
 
-            Undo.RecordObject(trigger, "PSS Node Add Trigger");
-            trigger.channel = _node._channel;
-            EditorUtility.SetDirty(trigger);
-            UdonSharpEditorUtility.CopyProxyToUdon(trigger);
+            var trigger = (PSS_TriggerBase)Undo.AddComponent(_node.gameObject, type);
+            if (trigger == null) return;
+
+            // delayCall: UdonSharp OnEnable вызывает CopyUdonToProxy (обнуляет поля),
+            // поэтому привязываем channel только в следующем frame.
+            EditorApplication.delayCall += () =>
+            {
+                if (trigger == null || channel == null) return;
+                Undo.RecordObject(trigger, "PSS Node Add Trigger");
+                trigger.channel = channel;
+                EditorUtility.SetDirty(trigger);
+                UdonSharpEditorUtility.CopyProxyToUdon(trigger);
+                Repaint();
+            };
         }
 
         private void AddAction(Type type)
         {
             EnsureChannel();
+            var channel = _node._channel;
+            if (channel == null) return;
+
             var action = (PSS_ActionBase)Undo.AddComponent(_node.gameObject, type);
-            if (action == null || _node._channel == null) return;
+            if (action == null) return;
 
-            Undo.RecordObject(action, "PSS Node Add Action");
-            action.channel  = _node._channel;
-            action.priority = _node._channel._actions?.Length ?? 0;
-            EditorUtility.SetDirty(action);
-            UdonSharpEditorUtility.CopyProxyToUdon(action);
-
-            RescanActions(_node._channel);
+            // delayCall по той же причине — ждём CopyUdonToProxy после OnEnable
+            EditorApplication.delayCall += () =>
+            {
+                if (action == null || channel == null) return;
+                Undo.RecordObject(action, "PSS Node Add Action");
+                action.channel  = channel;
+                action.priority = channel._actions?.Length ?? 0;
+                EditorUtility.SetDirty(action);
+                UdonSharpEditorUtility.CopyProxyToUdon(action);
+                RescanActions(channel);
+                Repaint();
+            };
         }
 
         // ── Helpers ───────────────────────────────────────────────────────────
