@@ -21,6 +21,10 @@ namespace PuruSignals
         [Tooltip("0=None, 1=BufferOne (последнее событие), 2=Everytime (полная история для Toggle)")]
         public int bufferMode = 0;
 
+        [Header("Restrictions")]
+        [Tooltip("Только Instance Master может отправлять событие. Используй для OnTimer, OnSpawn — иначе каждый клиент шлёт независимо.")]
+        public bool masterOnly = false;
+
         private int _networkId = -1;
         private int _bufferId  = -1;
         private int _lastSeed  = 0;
@@ -42,12 +46,14 @@ namespace PuruSignals
 
         public override void Trigger()
         {
+            if (masterOnly && !Networking.IsMaster) return;
             triggeredPlayer = null;
             _SendToNetwork();
         }
 
         public override void TriggerWithPlayer(VRCPlayerApi player)
         {
+            if (masterOnly && !Networking.IsMaster) return;
             triggeredPlayer = player;
             _SendToNetwork();
         }

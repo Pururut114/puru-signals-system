@@ -231,7 +231,8 @@ namespace PuruSignals.Editor
             }
 
             EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(so.FindProperty("network"), new GUIContent("Network"));
+            EditorGUILayout.PropertyField(so.FindProperty("network"),    new GUIContent("Network"));
+            EditorGUILayout.PropertyField(so.FindProperty("masterOnly"), new GUIContent("Master Only"));
 
             // PSS_StateBuffer (только для GlobalStateful)
             if (_node.syncMode == NodeSyncMode.GlobalStateful)
