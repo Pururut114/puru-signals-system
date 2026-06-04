@@ -188,12 +188,26 @@ Repair-only режим: `Tools > PSS > Repair Missing Program Assets`.
 
 ---
 
-## Текущий статус (v0.4.1, 2026-06-04)
+## Текущий статус (v0.4.3, 2026-06-04)
 
 - **Node SyncMode:** Local / Global / **GlobalStateful** (третья кнопка на тулбаре)
 - **PSS_StateBuffer** (`Runtime/Network/`) — новый компонент, аналог T23_CommonBuffer. Хранит историю событий для replay при late join. Один на сцену, авто-создаётся при выборе GlobalStateful.
 - **Важно:** `PSS_StateBuffer.cs.meta` создан вручную (GUID: `a1b2c3d4e5f647890a1b2c3d4e5f6789`). Перед следующим релизом запустить `_gen_meta_assets.py` — добавить `Runtime/Network/PSS_StateBuffer.cs` в `BEHAVIOURS`.
 - `bufferForLateJoin` на PSS_ChannelGlobal **удалён** — заменён на `stateBuffer` + `bufferMode`.
+- **`masterOnly`** на PSS_ChannelGlobal — если true, только Instance Master отправляет сетевое событие. Решает OnTimer/OnSpawn + Global (N клиентов = N fires). Видно в Node инспекторе.
+
+### Известные несовместимые комбинации (документировать, не фиксить кодом)
+
+| Комбинация | Проблема | Решение для пользователя |
+|---|---|---|
+| AnimationParam(Trigger) + GlobalStateful | N replays = N SetTrigger, очередь анимаций | Использовать Bool вместо Trigger |
+| SetStateSync + GlobalStateful | Два sync-пути (StateSync.OnDeserialization + StateBuffer replay) конфликтуют | Использовать просто Global; StateSync сам себя синкает |
+| CallMethod(All/Owner) + GlobalStateful | Replay ре-бродкастит на всех существующих клиентов | Не использовать с GlobalStateful |
+| OnTimer/OnSpawn + Global без masterOnly | N клиентов = N fires/тик | masterOnly=true |
+
+### Потенциальные улучшения (следующая итерация)
+
+- Build Validator — предупреждения для несовместимых комбинаций выше
 
 ---
 
