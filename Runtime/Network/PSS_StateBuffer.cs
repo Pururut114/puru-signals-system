@@ -22,9 +22,10 @@ namespace PuruSignals
         [UdonSynced] private int[] _history      = new int[MaxHistory];
         [UdonSynced] private int   _historyCount = 0;
 
-        // Сколько событий этот клиент уже применил через real-time путь (PSS_Network).
-        // OnDeserialization воспроизводит только события начиная с этого индекса.
-        private int _appliedUpTo = 0;
+        // Сколько событий этот клиент уже применил (real-time или replay).
+        private int _appliedUpTo   = 0;
+        // OnDeserialization пришёл, но каналы ещё не зарегистрированы — отложенный replay.
+        private bool _pendingReplay = false;
 
         // ── Registration ──────────────────────────────────────────────────────
 
@@ -34,6 +35,7 @@ namespace PuruSignals
             int id = _channelCount;
             _channels[id] = channel;
             _channelCount++;
+            _TryApplyPendingReplay(); // применить отложенные события если OnDeserialization уже был
             return id;
         }
 
@@ -79,14 +81,24 @@ namespace PuruSignals
 
         public override void OnDeserialization()
         {
-            // Воспроизводим только события которые этот клиент ещё не видел.
-            for (int i = _appliedUpTo; i < _historyCount; i++)
+            _pendingReplay = true;
+            _TryApplyPendingReplay();
+        }
+
+        // Воспроизводит историю начиная с _appliedUpTo.
+        // Останавливается если встречает незарегистрированный канал — вызовется снова из RegisterChannel.
+        private void _TryApplyPendingReplay()
+        {
+            if (!_pendingReplay) return;
+            while (_appliedUpTo < _historyCount)
             {
-                int id = _history[i];
-                if (id >= 0 && id < _channelCount && _channels[id] != null)
-                    _channels[id]._FireLocal();
+                int id = _history[_appliedUpTo];
+                if (id < 0 || id >= _channelCount || _channels[id] == null)
+                    return; // канал ещё не зарегистрирован — ждём
+                _channels[id]._FireLocal();
+                _appliedUpTo++;
             }
-            _appliedUpTo = _historyCount;
+            _pendingReplay = false;
         }
     }
 }

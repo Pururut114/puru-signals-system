@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2] — 2026-06-04
+
+### Fixed
+- `PSS_StateBuffer` — late join replay не работал. `OnDeserialization` может прийти до `PSS_ChannelGlobal.Start()` — каналы ещё не зарегистрированы (`_channelCount=0`), все события пропускались, `_appliedUpTo` прыгал в конец, replay терялся навсегда. Добавлен `_pendingReplay` флаг + `_TryApplyPendingReplay()`: откладывает replay, возобновляет по мере регистрации каналов.
+
+---
+
 ## [0.4.1] — 2026-06-04
 
 ### Fixed
