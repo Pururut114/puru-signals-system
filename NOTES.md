@@ -188,6 +188,15 @@ Repair-only режим: `Tools > PSS > Repair Missing Program Assets`.
 
 ---
 
+## Текущий статус (v0.4.1, 2026-06-04)
+
+- **Node SyncMode:** Local / Global / **GlobalStateful** (третья кнопка на тулбаре)
+- **PSS_StateBuffer** (`Runtime/Network/`) — новый компонент, аналог T23_CommonBuffer. Хранит историю событий для replay при late join. Один на сцену, авто-создаётся при выборе GlobalStateful.
+- **Важно:** `PSS_StateBuffer.cs.meta` создан вручную (GUID: `a1b2c3d4e5f647890a1b2c3d4e5f6789`). Перед следующим релизом запустить `_gen_meta_assets.py` — добавить `Runtime/Network/PSS_StateBuffer.cs` в `BEHAVIOURS`.
+- `bufferForLateJoin` на PSS_ChannelGlobal **удалён** — заменён на `stateBuffer` + `bufferMode`.
+
+---
+
 ## Документация в репо
 
 - `Docs/modules.md` — реестр всех модулей
