@@ -62,15 +62,5 @@ namespace PuruSignals
             _channels[_pendingId]._ReceiveNetworkFire(_randomSeed);
         }
 
-        // ── Buffering для late-joiners ────────────────────────────────────────
-        // Простая буферизация: при входе игрока Owner воспроизводит последнее состояние
-        // через повторную RequestSerialization (OnDeserialization получат все новые клиенты).
-
-        public override void OnPlayerJoined(VRCPlayerApi player)
-        {
-            if (!Networking.IsOwner(gameObject)) return;
-            if (_pendingId >= 0)
-                RequestSerialization();
-        }
     }
 }

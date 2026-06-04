@@ -4,6 +4,7 @@
 
 ### Fixed
 - `PSS_StateBuffer` — late join replay не работал. `OnDeserialization` может прийти до `PSS_ChannelGlobal.Start()` — каналы ещё не зарегистрированы (`_channelCount=0`), все события пропускались, `_appliedUpTo` прыгал в конец, replay терялся навсегда. Добавлен `_pendingReplay` флаг + `_TryApplyPendingReplay()`: откладывает replay, возобновляет по мере регистрации каналов.
+- `PSS_Network` — удалён `OnPlayerJoined` (ранее пересылал последнее событие при джоине). Race condition с `PSS_StateBuffer.OnPlayerJoined`: если `OnDeserialization` от PSS_Network приходил после `StateBuffer` replay — последнее событие дублировалось. `PSS_Network` теперь только роутер реального времени; late join полностью обрабатывается `PSS_StateBuffer`.
 
 ---
 
